@@ -26,4 +26,8 @@ export default {
     align-items: center;
   }
 }
+
+
+/* new CSS start from here */
+
 </style>

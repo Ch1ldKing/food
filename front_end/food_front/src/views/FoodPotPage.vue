@@ -10,6 +10,7 @@
   <script>
   import FoodList from '@/components/FoodList.vue';
   import Pot from '@/components/Pot.vue';
+
   
   export default {
     components: {
