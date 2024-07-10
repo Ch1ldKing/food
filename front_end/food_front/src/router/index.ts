@@ -20,7 +20,7 @@ const router = createRouter({
     {
       path: '/food-pot',
       name: 'FoodPotPage',
-      component: FoodPotPage
+      component: () => import('../views/FoodPotPage.vue')
     }
   ]
 })
