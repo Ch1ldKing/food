@@ -28,40 +28,6 @@ const handleFoodSelected = (food) => {
 </script>
 
 <template>
-
-    <div class="food-pot-page">
-      <div class="container">
-        <FoodList @food-selected="handleFoodSelected" />
-        <Pot :selectedFood="selectedFood" />
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  import FoodList from '@/components/FoodList.vue';
-  import Pot from '@/components/Pot.vue';
-
-  
-  export default {
-    components: {
-      FoodList,
-      Pot,
-    },
-    data() {
-      return {
-        selectedFood: null,
-      };
-    },
-    methods: {
-      handleFoodSelected(food) {
-        this.selectedFood = food;
-      },
-    },
-  };
-  </script>
-  
- <template>
-
   <div class="food-lists-container">
     <h2>Vegetables</h2>
     <FoodList :category="'vegetable'" />
@@ -85,7 +51,6 @@ const handleFoodSelected = (food) => {
 }
 
 @media (max-width: 600px) {
-
   .container {
     flex-direction: column;
     align-items: center;
@@ -97,5 +62,4 @@ const handleFoodSelected = (food) => {
   flex-direction: column;
   gap: 20px;
 }
-
 </style>
