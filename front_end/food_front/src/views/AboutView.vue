@@ -1,15 +1,13 @@
 <template>
   <div class="about">
     <Graph />
-    <h1>Testing CSS DEMO</h1>
+    <h1></h1>
   </div>
 </template>
 
 
 <script>
 import Graph from '../components/Graph.vue';
-
-
 export default {
   name: 'App',
   components: {
@@ -26,4 +24,5 @@ export default {
     align-items: center;
   }
 }
+/* new CSS start from here */
 </style>

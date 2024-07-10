@@ -2,6 +2,7 @@
   <div ref="graph"></div>
 </template>
 
+<!-- script样式更改 //////////////////////////-->
 <script>
 import * as d3 from 'd3';
 
@@ -30,11 +31,17 @@ export default {
   },
   mounted() {
     this.createGraph();
+    window.addEventListener('resize', this.createGraph); // 监听窗口大小变化
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.createGraph); // 移除监听器
   },
   methods: {
     createGraph() {
-      const width = 600;
-      const height = 600;
+      const width = window.innerWidth < 600 ? window.innerWidth - 20 : 600;
+      const height = width;
+      d3.select(this.$refs.graph).select('svg').remove(); // 移除之前的图表
+
       const svg = d3.select(this.$refs.graph)
                     .append('svg')
                     .attr('width', width)
@@ -90,6 +97,8 @@ export default {
 };
 </script>
 
+
+<!-- style样式更改 -->
 <style scoped>
 .nodes circle {
   cursor: pointer;
@@ -101,7 +110,17 @@ export default {
   font: 12px sans-serif;
   pointer-events: none;
 }
+
+@media (max-width: 600px) {
+  .nodes circle {
+    r: 10px; /* 缩小节点大小 */
+  }
+  .texts {
+    font-size: 10px; /* 缩小字体大小 */
+  }
+}
 </style>
+
 
 
   
