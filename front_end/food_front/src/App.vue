@@ -10,14 +10,15 @@ import HelloWorld from './components/HelloWorld.vue'
   <!-- <div class="wrapper"> -->
   <!--       <HelloWorld msg="You did it!" /> -->
 
-  <nav>
-    <RouterLink to="/food-pot">Food Pot</RouterLink>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-    <RouterLink to="/test">test</RouterLink>
 
-  </nav>
-  <!-- </div> -->
+      <nav>
+        <RouterLink to="/food-pot">Food Pot</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/test">Test</RouterLink>
+      </nav>
+    <!-- </div> -->
+
   <!-- </header> -->
 
   <RouterView />
