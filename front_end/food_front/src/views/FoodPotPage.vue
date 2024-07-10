@@ -40,6 +40,7 @@ const handleFoodSelected = (food) => {
     <h2>Grains</h2>
     <FoodList :category="'grain'" />
   </div>
+  <Pot :selectedFood="selectedFood" />
 </template>
 
 
