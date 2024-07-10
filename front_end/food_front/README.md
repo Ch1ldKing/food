@@ -11,6 +11,7 @@ npm install pnpm
 ```
 ## 构建
 ```
+cd front_end
 pnpm install
 pnpm run dev
 ```
