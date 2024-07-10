@@ -1,7 +1,7 @@
 <template>
     <div class="bowl-container">
       <div class="bowl-wrapper">
-        <img :src="bowlImage" alt="Bowl" class="bowl-image" />
+        <img :src="bowlImage" alt="Bowl" class="bowl-image" @click="shakeBowl" :class="{ 'shake': isShaking }" />
         <img :src="fireImage" alt="Fire" class="fire-image" />
         <Bubble 
           v-for="(bubble, index) in bubbles" 
@@ -9,8 +9,6 @@
           :text="bubble.text" 
           :style="bubble.style"
           :url="bubble.url" 
-          :position="bubble.position"
-          :positionX="bubble.positionX"
         />
       </div>
     </div>
@@ -42,17 +40,24 @@
       this.generateAllBubbles(); // 一次性生成所有气泡
     },
     methods: {
+      shakeBowl() {
+        this.isShaking = true;
+        setTimeout(() => {
+          this.isShaking = false;
+        }, 500); // 抖动持续时间与动画时间匹配
+      },
       generateAllBubbles() { // 一次性生成所有气泡
+        const radius = 120; // 环绕的半径，可以根据需要调整
+        const centerX = 50; // 中心点的 X 坐标（百分比）
+        const centerY = 50; // 中心点的 Y 坐标（百分比）
+        
         this.foodItems.forEach((food, index) => {
           const angle = (index / this.foodItems.length) * 2 * Math.PI; // 根据索引计算角度
-          this.addBubble(food, angle);
+          const x = centerX + radius * Math.cos(angle); // 计算 x 坐标，使用百分比
+          const y = centerY + radius * Math.sin(angle); // 计算 y 坐标，使用百分比
+          const position = { left: `${x}%`, top: `${y}%` };
+          this.bubbles.push({ text: food.text, style: position, url: food.url });
         });
-      },
-      addBubble(food, angle) {
-        const radius = 150; // 环绕的半径
-        const x = 50 + radius * Math.cos(angle); // 计算 x 坐标，使用百分比
-        const y = 50 + radius * Math.sin(angle); // 计算 y 坐标，使用百分比
-        this.bubbles.push({ text: food.text, position: y, positionX: x, url: food.url });
       }
     }
   };
@@ -76,6 +81,7 @@
   .bowl-image {
     width: 150px; /* 根据需要调整大小 */
     height: auto;
+    cursor: pointer; /* 添加手型光标 */
   }
   
   .fire-image {
@@ -105,6 +111,7 @@
     animation: shake 0.5s;
   }
   </style>
+  
   
   
   
