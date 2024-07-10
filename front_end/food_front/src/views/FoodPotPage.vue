@@ -18,7 +18,7 @@ import Pot from '@/components/Pot.vue';
 //   },
 // };
 import { ref } from 'vue'
-import FoodList from '@/components/VegetableList.vue'
+import FoodList from '@/components/FoodList.vue'
 
 const category = ref('vegetable')
 
@@ -70,6 +70,11 @@ const handleFoodSelected = (food) => {
     <h2>Meats</h2>
     <FoodList :category="'meat'" />
   </div>
+  <div class="food-lists-container">
+    <h2>Grains</h2>
+    <FoodList :category="'grain'" />
+  </div>
+  <Pot :selectedFood="selectedFood" />
 </template>
 
 
