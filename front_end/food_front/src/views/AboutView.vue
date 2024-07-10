@@ -1,8 +1,22 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Graph />
+    <h1>Testing CSS DEMO</h1>
   </div>
 </template>
+
+
+<script>
+import Graph from '../components/Graph.vue';
+
+
+export default {
+  name: 'App',
+  components: {
+    Graph
+  }
+};
+</script>
 
 <style>
 @media (min-width: 1024px) {
