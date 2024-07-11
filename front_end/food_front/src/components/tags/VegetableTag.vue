@@ -40,9 +40,9 @@
     background-color: #32CD32; /* 激活时使用绿色 */
   }
   
-  .vegetable-tag:hover {
-    background-color: #32CD32; /* 鼠标悬停时使用绿色 */
-  }
+/*   .vegetable-tag:hover {
+    background-color: #32CD32; }/* 鼠标悬停时使用绿色 */ 
+  
   
   .vegetable-img {
     width: 20px;
