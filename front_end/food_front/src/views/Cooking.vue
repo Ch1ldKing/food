@@ -1,19 +1,25 @@
 <template>
-    <div>
-        <transition name="fade">
-            <Pot v-if="showPot" />
-        </transition>
-        <!-- 其他内容 -->
-    </div>
+  <div class="common-layout">
+    <el-container>
+      <el-main>Main
+        <FoodList />
+      </el-main>
+      <el-footer :style="{height: '20px', backgroundColor: '#f5f5f5', lineHeight: '50px', textAlign: 'center' }">Footer
+        <Pot>  </Pot>
+      </el-footer>
+    </el-container>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Pot from '../components/Pot.vue';
+import FoodList from '@/components/FoodList.vue'
 
 export default defineComponent({
     components: {
-        Pot
+        Pot,
+        FoodList
     },
     setup() {
         const showPot = ref(true); // 控制 Pot 组件的显示
