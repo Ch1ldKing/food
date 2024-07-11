@@ -1,6 +1,6 @@
 <template>
     <div class="pot">
-      <img src="@/assets/bowl.png" alt="Pot" class="pot-image" />
+      <img src="@/assets/food_img/bowl.png" alt="Pot" class="pot-image" />
       <transition name="shake">
         <div v-if="selectedFood" class="food-in-pot">
 <!-- 换逻辑，同foodlist -->
@@ -19,9 +19,9 @@
   };
 
   //另一种方法引入图片
-  import carrotImage from '@/assets/carrot.png';
-  import potatoImage from '@/assets/potato.png';
-  import tomatoImage from '@/assets/tomato.webp';
+  import carrotImage from '@/assets/food_img/carrot.png';
+  import potatoImage from '@/assets/food_img/potato.png';
+  import tomatoImage from '@/assets/food_img/tomato.webp';
   </script>
 
   <style scoped>
