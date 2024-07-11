@@ -36,12 +36,13 @@ const handleFoodSelected = (food) => {
       <FoodList category="meat" @food-selected="handleFoodSelected" />
       <FoodList category="grain" @food-selected="handleFoodSelected" />
     </div>
-    <div class="pot-container"> 
+    <Pot />
+    <!-- <div class="pot-container"> 
       <Pot />
-    </div>
-    <div class="pot-image-container">
+    </div> -->
+    <!-- <div class="pot-image-container">
       <img :src="potImage" alt="Pot Image" class="pot-image" />
-    </div>
+    </div> -->
   </div>
 </template>
 
