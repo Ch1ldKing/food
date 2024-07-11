@@ -105,7 +105,7 @@ const toggleShowAll = (category) => {
   flex: 1; /* 允许容器在主轴方向上伸展 */
   overflow-y: auto; /* 垂直滚动 */
   width: 100%; /* 占满宽度 */
-  margin-bottom: 60px; /* 为Pot组件腾出空间 */
+  padding-bottom: 100px; /* 为Pot组件腾出足够的空间，确保滚动到最底部 */
 }
 
 .container {
@@ -113,7 +113,21 @@ const toggleShowAll = (category) => {
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 20px; /* 为了在移动端保证底部内容的显示，增加底部填充 */
 }
+
+@media (max-width: 600px) {
+  .scroll-container {
+    height: calc(100vh - 100px); /* 限制滚动容器的高度，为Pot组件腾出空间 */
+  }
+
+  .container {
+    flex: 1; /* 允许容器在主轴方向上伸展 */
+    width: 100%; /* 在手机模式下占满容器宽度 */
+    padding-bottom: 100px; /* 增加底部填充，以确保在移动端显示最底部内容 */
+  }
+}
+
 
 .preference-box {
   padding: 20px;
