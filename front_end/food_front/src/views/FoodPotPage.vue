@@ -32,6 +32,7 @@ const toggleShowAll = (category) => {
 
 <template>
   <div class="food-pot-page">
+<!--   这两个是子菜单的容器 -->
     <div class="scroll-container">
       <div class="container">
         <h2>Choose your ingredients</h2>
@@ -83,14 +84,16 @@ const toggleShowAll = (category) => {
         
       </div>
     </div>
+<!--     这个是单独在最底下的锅的容器 -->
     <div class="pot-container">
       <Pot />
     </div>
+    
   </div>
 </template>
 
 
-
+<!-- 下面是全部CSS的代码和注脚 -->
 
 <style>
 .food-pot-page {
