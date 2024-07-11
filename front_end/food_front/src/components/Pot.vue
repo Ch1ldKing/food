@@ -1,4 +1,4 @@
-<template>
+
   <!--
     <div class="pot">
       <img src="@/assets/food_img/bowl.png" alt="Pot" class="pot-image" />
@@ -13,13 +13,13 @@
   </div>-->
   <template>
     <div class="pot">
-      <img src="@/assets/food_img/bowl.png" alt="Pot" class="pot-image" />
-      <!-- <div v-for="food in potFoods" :key="food.id" class="food-in-pot">
+      <img :src="potImage" alt="Pot Image" class="pot-image" />
+      <div v-for="food in potFoods" :key="food.id" class="food-in-pot">
         {{ food.name }}
-      </div> -->
+      </div>
     </div>
   </template>
-</template>
+
   
   <!-- <script>
   export default {
@@ -37,6 +37,7 @@
   <script lang="ts" setup>
   import { ref, watch } from 'vue';
   import { useFoodStore } from '@/stores/foodStore';
+  import potImage from '@/assets/food_img/bowl.png'
 
   const foodStore = useFoodStore();
   const potFoods = ref([]);

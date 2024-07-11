@@ -18,6 +18,7 @@ const handleFoodSelected = (food) => {
       <h2>Choose your ingredients</h2>
 
 
+
         <h3>Vegetables</h3>
         <FoodList category="vegetable" @food-selected="handleFoodSelected" />
 
@@ -38,8 +39,9 @@ const handleFoodSelected = (food) => {
     </div>
 
     <div class="pot-image-container">
+
       <img :src="potImage" alt="Pot Image" class="pot-image" />
-    </div>
+    </div> -->
   </div>
 </template>
 
