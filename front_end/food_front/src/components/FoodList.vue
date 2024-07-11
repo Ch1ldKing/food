@@ -1,4 +1,5 @@
 <template>
+
   <div class="food-list">
     <component v-for="food in filteredFoods" :is="getTagComponent()" :key="food.id" :active="food.active"
       @click="toggleActive(food)">
@@ -41,6 +42,7 @@ const getTagComponent = () => {
       return GrainTag;
     default:
       return VegetableTag;
+
   }
 };
 
