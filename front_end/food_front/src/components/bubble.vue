@@ -37,7 +37,7 @@
   width: 60px; /* 设置宽度 */
   height: 60px; /* 设置高度，使其与宽度相等 */
   border-radius: 50%; /* 使气泡变成圆形 */
-  border: 2px solid #5a5a5a; /* 添加显眼的边框颜色 */
+  border: 2px solid #a9a9a9; /* 添加显眼的边框颜色 */
   display: flex;
   justify-content: center;
   align-items: center;
