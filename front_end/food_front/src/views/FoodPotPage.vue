@@ -29,56 +29,57 @@ const toggleShowAll = (category) => {
 
 </script>
 
+
 <template>
   <div class="food-pot-page">
     <div class="scroll-container">
       <div class="container">
         <h2>Choose your ingredients</h2>
         
-        <el-row :gutter="20">
-          <el-col :span="24">
-            <el-card class="preference-box" shadow="always">
+        <row :gutter="20">
+          <col :span="24">
+            <card class="preference-box" shadow="always">
               <h3 slot="header">Vegetables</h3>
               <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
               <div v-show="!showAllVegetables">
                 <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />
               </div>
-              <el-button type="primary" @click="toggleShowAll('vegetables')">
+              <button type="primary" @click="toggleShowAll('vegetables')">
                 {{ showAllVegetables ? 'Show Less' : 'Show More' }}
-              </el-button>
-            </el-card>
-          </el-col>
-        </el-row>
+              </button>
+            </card>
+          </col>
+        </row>
 
-        <el-row :gutter="20">
-          <el-col :span="24">
-            <el-card class="preference-box" shadow="always">
+        <row :gutter="20">
+          <col :span="24">
+            <card class="preference-box" shadow="always">
               <h3 slot="header">Meat</h3>
               <FoodList category="meat" @food-selected="handleFoodSelected" v-show="showAllMeats" />
               <div v-show="!showAllMeats">
                 <FoodList category="meat" @food-selected="handleFoodSelected" :max-items="3" />
               </div>
-              <el-button type="primary" @click="toggleShowAll('meats')">
+              <button type="primary" @click="toggleShowAll('meats')">
                 {{ showAllMeats ? 'Show Less' : 'Show More' }}
-              </el-button>
-            </el-card>
-          </el-col>
-        </el-row>
+              </button>
+            </card>
+          </col>
+        </row>
 
-        <el-row :gutter="20">
-          <el-col :span="24">
-            <el-card class="preference-box" shadow="always">
+        <row :gutter="20">
+          <col :span="24">
+            <card class="preference-box" shadow="always">
               <h3 slot="header">Grains</h3>
               <FoodList category="grain" @food-selected="handleFoodSelected" v-show="showAllGrains" />
               <div v-show="!showAllGrains">
                 <FoodList category="grain" @food-selected="handleFoodSelected" :max-items="3" />
               </div>
-              <el-button type="primary" @click="toggleShowAll('grains')">
+              <button type="primary" @click="toggleShowAll('grains')">
                 {{ showAllGrains ? 'Show Less' : 'Show More' }}
-              </el-button>
-            </el-card>
-          </el-col>
-        </el-row>
+              </button>
+            </card>
+          </col>
+        </row>
         
       </div>
     </div>
@@ -87,6 +88,8 @@ const toggleShowAll = (category) => {
     </div>
   </div>
 </template>
+
+
 
 
 <style>
@@ -102,9 +105,11 @@ const toggleShowAll = (category) => {
   flex: 1; /* 允许容器在主轴方向上伸展 */
   overflow-y: auto; /* 垂直滚动 */
   width: 100%; /* 占满宽度 */
+  margin-bottom: 60px; /* 为Pot组件腾出空间 */
 }
 
 .container {
+  flex: 1; /* 允许容器在主轴方向上伸展 */
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
@@ -116,7 +121,13 @@ const toggleShowAll = (category) => {
 }
 
 .pot-container {
-  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
 
 .pot-image-container {
@@ -149,5 +160,22 @@ button:active {
   background-color: #1e7e34; /* 点击时的更深绿色背景 */
   transform: scale(0.95); /* 点击时的缩小效果 */
 }
+
+@media (max-width: 600px) {
+  .scroll-container {
+    height: calc(100vh - 100px); /* 限制滚动容器的高度，为Pot组件腾出空间 */
+  }
+
+  .container {
+    width: 100%; /* 在手机模式下占满容器宽度 */
+  }
+  .preference-box {
+    width: 100%;
+  }
+  .scroll-container {
+    padding: 10px;
+  }
+}
 </style>
+
 
