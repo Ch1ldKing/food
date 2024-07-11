@@ -88,6 +88,7 @@ const toggleShowAll = (category) => {
     <div class="pot-container">
       <Pot />
     </div>
+    
   </div>
 </template>
 
