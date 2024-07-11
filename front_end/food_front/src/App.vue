@@ -1,90 +1,211 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <!-- <header> -->
-  <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
-  <!-- <div class="wrapper"> -->
-  <!--       <HelloWorld msg="You did it!" /> -->
+    <div @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" class="app">
 
+        <router-view />
 
-      <nav>
-        <RouterLink to="/food-pot">Food Pot</RouterLink>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/test">Test</RouterLink>
-      </nav>
-    <!-- </div> -->
+        <div class="dots">
 
-  <!-- </header> -->
+            <span v-for="(route, index) in routes" :key="index" :class="{ active: currentIndex === index }"></span>
 
-  <RouterView />
+          </div>
+
+      </div>
 
 </template>
 
+
+
+<script lang="ts">
+
+import { defineComponent, ref, onMounted, watch } from 'vue';
+
+import { useRouter, useRoute } from 'vue-router';
+
+
+
+export default defineComponent({
+
+  setup() {
+
+    const router = useRouter();
+
+    const route = useRoute();
+
+    const touchStartX = ref(0);
+
+    const currentIndex = ref(0);
+
+
+
+    const routes = [
+
+      { path: '/', name: 'FootPotPage' },
+
+      { path: '/test', name: 'testPage' },
+
+      { path: '/about', name: 'About' }
+
+    ];
+
+
+
+    const updateCurrentIndex = function () {
+
+      currentIndex.value = routes.findIndex(function (r) {
+
+        return r.path === route.path;
+
+      });
+
+    };
+
+
+
+    onMounted(function () {
+
+      updateCurrentIndex();
+
+    });
+
+
+
+    watch(route, function () {
+
+      updateCurrentIndex();
+
+    });
+
+
+
+    const onTouchStart = function (event: TouchEvent) {
+
+      touchStartX.value = event.touches[0].clientX;
+
+    };
+
+
+
+    const onTouchMove = function (event: TouchEvent) {
+
+      const touchEndX = event.touches[0].clientX;
+
+      if (touchStartX.value - touchEndX > 50) {
+
+        nextPage();
+
+      } else if (touchStartX.value - touchEndX < -50) {
+
+        prevPage();
+
+      }
+
+    };
+
+
+
+    const onTouchEnd = function () {
+
+      touchStartX.value = 0;
+
+    };
+
+
+
+    const nextPage = function () {
+
+      if (currentIndex.value < routes.length - 1) {
+
+        router.push(routes[currentIndex.value + 1].path);
+
+      }
+
+    };
+
+
+
+    const prevPage = function () {
+
+      if (currentIndex.value > 0) {
+
+        router.push(routes[currentIndex.value - 1].path);
+
+      }
+
+    };
+
+
+
+    return {
+
+      routes,
+
+      currentIndex,
+
+      onTouchStart,
+
+      onTouchMove,
+
+      onTouchEnd
+
+    };
+
+  }
+
+});
+
+</script>
+
+
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.app {
+
+  height: 100vh;
+
+  overflow: hidden;
+
+  position: relative;
+
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+
+
+.dots {
+
+  position: absolute;
+
+  top: 10px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 5px;
+
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+
+
+.dots span {
+
+  width: 10px;
+
+  height: 10px;
+
+  background: gray;
+
+  border-radius: 50%;
+
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
+.dots span.active {
 
-nav a:first-of-type {
-  border: 0;
-}
+  background: black;
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>
