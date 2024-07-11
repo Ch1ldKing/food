@@ -24,14 +24,18 @@
   
   <!--   CSS start here -->
   <style scoped>
+  
   .vegetable-tag {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border: 2px solid #32CD32; /* 使用绿色的边框 */
-    border-radius: 0.25rem;
-    cursor: pointer; /* 鼠标指针变为手型 */
-  }
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem; /* 缩小内边距 */
+  border: 2px solid #32CD32; /* 使用小麦颜色的边框 */
+  border-radius: 0.25rem;
+  cursor: pointer; /* 鼠标指针变为手型 */
+  transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+}
+
+  
   
   .vegetable-tag.active {
     background-color: #32CD32; /* 激活时使用绿色 */

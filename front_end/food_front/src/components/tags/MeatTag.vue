@@ -23,14 +23,16 @@
 
   <!--   CSS start here -->
   <style scoped>
+  
   .meat-tag {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border: 2px solid #FF6347; /* 使用红色的边框 */
-    border-radius: 0.25rem;
-    cursor: pointer; /* 鼠标指针变为手型 */
-  }
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem; /* 缩小内边距 */
+  border: 2px solid #FF6347;; /* 使用小麦颜色的边框 */
+  border-radius: 0.25rem;
+  cursor: pointer; /* 鼠标指针变为手型 */
+  transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+}
   
   .meat-tag.active {
     background-color: #FF6347; /* 激活时使用红色 */
