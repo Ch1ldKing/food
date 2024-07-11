@@ -1,8 +1,12 @@
 <template>
-
   <div class="food-list">
-    <component v-for="food in filteredFoods" :is="getTagComponent()" :key="food.id" :active="food.active"
-      @click="toggleActive(food)">
+    <component 
+     v-for="food in filteredFoods" 
+    :is="getTagComponent()" 
+    :key="food.id" 
+    :active="food.active"
+    :foodName="food.name"
+    @click="toggleActive(food)">
       {{ food.name }}
     </component>
   </div>
@@ -47,8 +51,14 @@ const getTagComponent = () => {
 };
 
 const toggleActive = (food) => {
-  foodStore.toggleFoodActive(food);
-  emits('food-selected', food);
+  if (!food._isToggling) {
+    food._isToggling = true;  // 防止重复点击
+    foodStore.toggleFoodActive(food);
+    emits('food-selected', food);
+    setTimeout(() => {
+      food._isToggling = false;  // 恢复状态
+    }, 300);
+  }
 };
 </script>
 
