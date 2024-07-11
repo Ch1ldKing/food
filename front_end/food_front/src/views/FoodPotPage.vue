@@ -28,38 +28,46 @@ const handleFoodSelected = (food) => {
 </script>
 
 <template>
-  <div class="food-lists-container">
-    <h2>Vegetables</h2>
-    <FoodList :category="'vegetable'" />
+  <div class="food-pot-page">
+    <div class="container">
+      <h2>Choose your ingredients</h2>
+      <FoodList category="vegetable" @food-selected="handleFoodSelected" />
+      <FoodList category="meat" @food-selected="handleFoodSelected" />
+      <FoodList category="grain" @food-selected="handleFoodSelected" />
+    </div>
+    <div class="pot-container">
+      <Pot />
+    </div>
   </div>
-  <div class="food-lists-container">
-    <h2>Meats</h2>
-    <FoodList :category="'meat'" />
-  </div>
-  <div class="food-lists-container">
-    <h2>Grains</h2>
-    <FoodList :category="'grain'" />
-  </div>
-  <Pot :selectedFood="selectedFood" />
 </template>
 
 
 <style>
+.food-pot-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.pot-container {
+  margin-top: 20px;
 }
 
 @media (max-width: 600px) {
+  .food-pot-page {
+    flex-direction: column;
+  }
+
   .container {
     flex-direction: column;
     align-items: center;
   }
-}
-
-.food-lists-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 </style>
