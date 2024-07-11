@@ -15,9 +15,9 @@
   <script>
 
 //另一种方法引入
-  import carrotImage from '@/assets/carrot.png';
-  import potatoImage from '@/assets/potato.png';
-  import tomatoImage from '@/assets/tomato.webp';
+  import carrotImage from '@/assets/food_img/carrot.png';
+  import potatoImage from '@/assets/food_img/potato.png';
+  import tomatoImage from '@/assets/food_img/tomato.webp';
 
   export default {
     data() {

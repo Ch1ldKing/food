@@ -15,7 +15,7 @@
   </template>
   
   <script>
-  import bowlImage from '@/assets/bowl.png';
+  import bowlImage from '@/assets/food_img/bowl.png';
   import fireImage from '@/assets/fire.webp'; // 导入火焰图片
   import Bubble from '@/components/bubble.vue';  // 导入气泡组件
   
