@@ -26,7 +26,7 @@
   align-items: center;
   padding: 0.3rem 0.6rem; /* 缩小内边距 */
   border: 2px solid #F5DEB3; /* 使用小麦颜色的边框 */
-  border-radius: 0.25rem;
+  border-radius: 1rem; /* 增加边框圆角半径 */
   cursor: pointer; /* 鼠标指针变为手型 */
   transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
 }

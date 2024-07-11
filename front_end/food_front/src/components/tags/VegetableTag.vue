@@ -3,9 +3,8 @@
     class="vegetable-tag rounded tag"
     p="x-2"
     border="~ green-200 dark:green-800"
-    :class="[
-      active ? 'bg-green-600 opacity-90' : 'bg-green-300 opacity-20',
-      active ? 'text-green-100' : 'text-green-800 dark:text-green-200'
+    :class="[ 
+      active ? 'bg-wheat-dark opacity-90 text-wheat-light' : 'bg-wheat-light opacity-20 text-wheat-dark'
     ]"
     @click="$emit('click')"
   >  <!-- 引入了图片，暂时每种分类只有一个，之后可以区分 -->
@@ -30,7 +29,7 @@
   align-items: center;
   padding: 0.3rem 0.6rem; /* 缩小内边距 */
   border: 2px solid #32CD32; /* 使用小麦颜色的边框 */
-  border-radius: 0.25rem;
+  border-radius: 1rem; /* 增加边框圆角半径 */
   cursor: pointer; /* 鼠标指针变为手型 */
   transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
 }
@@ -52,19 +51,19 @@
   }
   
   /* 颜色变量 */
-  .bg-green-light {
+  .bg-wheat-light {
     background-color: #90EE90;
   }
   
-  .bg-green-dark {
+  .bg-wheat-dark {
     background-color: #006400;
   }
   
-  .text-green-light {
+  .text-wheat-light {
     color: #90EE90;
   }
   
-  .text-green-dark {
+  .text-wheat-dark {
     color: #006400;
   }
   </style>
