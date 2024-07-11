@@ -41,7 +41,7 @@ const handleFoodSelected = (food) => {
     <div class="pot-image-container">
 
       <img :src="potImage" alt="Pot Image" class="pot-image" />
-    </div> -->
+    </div> 
   </div>
 </template>
 
