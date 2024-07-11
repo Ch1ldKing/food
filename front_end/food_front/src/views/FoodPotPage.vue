@@ -19,6 +19,7 @@ import Pot from '@/components/Pot.vue';
 // };
 import { ref } from 'vue'
 import FoodList from '@/components/FoodList.vue'
+import potImage from '@/assets/food_img/bowl.png'
 
 const category = ref('vegetable')
 
@@ -37,6 +38,9 @@ const handleFoodSelected = (food) => {
     </div>
     <div class="pot-container">
       <Pot />
+    </div>
+    <div class="pot-image-container">
+      <img :src="potImage" alt="Pot Image" class="pot-image" />
     </div>
   </div>
 </template>
