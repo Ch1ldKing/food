@@ -36,9 +36,10 @@
   color: #FAF3E0; /* 选中时的文本颜色 */
 }
 
-.grain-tag:hover {
-  background-color: #F5DEB3; /* 鼠标悬停时使用浅小麦颜色 */
-}
+/* .grain-tag:hover {
+  background-color: #F5DEB3; }/* 鼠标悬停时使用浅小麦颜色 */ 
+
+
   
 .grain-img {
   width: 16px; /* 缩小图片 */
