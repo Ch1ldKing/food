@@ -35,7 +35,7 @@ const handleFoodSelected = (food) => {
       <FoodList category="meat" @food-selected="handleFoodSelected" />
       <FoodList category="grain" @food-selected="handleFoodSelected" />
     </div>
-    <div class="pot-container">
+    <div class="pot-container"> 
       <Pot />
     </div>
   </div>
