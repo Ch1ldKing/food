@@ -44,7 +44,9 @@ export default defineComponent({
 
       { path: '/test', name: 'testPage' },
 
-      { path: '/about', name: 'About' }
+      { path: '/about', name: 'About' },
+
+      { path: '/button', name: 'Button'}
 
     ];
 

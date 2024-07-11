@@ -22,6 +22,11 @@ const router = createRouter({
       path: '/Test',
       name: 'testPage',
       component: () => import('../views/Test.vue')
+    },
+    {
+      path: '/button',
+      name: 'Button',
+      component: () => import('../components/Buttons.vue')
     }
   ]
 })
