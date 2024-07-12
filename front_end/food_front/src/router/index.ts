@@ -1,14 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import FoodPotPage from '../views/FoodPotPage.vue'
+import testpage from '../views/Test.vue'
+import Cooking from '../views/Cooking.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
     {
       path: '/about',
       name: 'about',
@@ -18,9 +15,24 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/food-pot',
+      path: '/',
       name: 'FoodPotPage',
       component: () => import('../views/FoodPotPage.vue')
+    },
+    {
+      path:'/cooking',
+      name:'Cooking',
+      component: () => import('../views/Cooking.vue')
+    },
+    {
+      path: '/Test',
+      name: 'testPage',
+      component: () => import('../views/Test.vue')
+    },
+    {
+      path: '/button',
+      name: 'Button',
+      component: () => import('../components/Buttons.vue')
     }
   ]
 })

@@ -1,44 +1,83 @@
 <template>
-    <div class="food-list">
-      <div
-        v-for="food in foods"
-        :key="food.id"
-        class="food-item"
-        @click="selectFood(food)"
-      >
-        {{ food.name }}
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        foods: [
-          { id: 1, name: 'Carrot' },
-          { id: 2, name: 'Potato' },
-          { id: 3, name: 'Tomato' },
-          // 更多食材
-        ]
-      };
-    },
-    methods: {
-      selectFood(food) {
-        this.$emit('food-selected', food);
-      }
-    }
-  };
-  </script>
-  
-  <style scoped>
-  .food-list {
-    display: flex;
-    flex-direction: column;
+  <div class="food-list">
+    <component 
+     v-for="food in displayedFoods" 
+    :is="getTagComponent()" 
+    :key="food.id" 
+    :active="food.active"
+    :foodName="food.name"
+    @click="toggleActive(food)">
+      {{ food.name }}
+    </component>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref, computed, onMounted } from 'vue';
+import { defineProps, defineEmits } from 'vue';
+import { useFoodStore } from '@/stores/foodStore';
+import VegetableTag from '@/components/tags/VegetableTag.vue';
+import MeatTag from '@/components/tags/MeatTag.vue';
+import GrainTag from '@/components/tags/GrainTag.vue';
+
+const props = defineProps<{
+  category: 'vegetable' | 'meat' | 'grain',
+  maxItems: {
+    type: Number,
+    default: null
   }
-  .food-item {
-    cursor: pointer;
-    margin: 10px 0;
+}>();
+
+const emits = defineEmits(['food-selected']);
+
+const foodStore = useFoodStore();
+
+onMounted(() => {
+  foodStore.fetchFoods();
+});
+
+const filteredFoods = computed(() => {
+  return foodStore.getFoodsByCategory(props.category);
+});
+
+const displayedFoods = computed(() => {
+  if (props.maxItems !== null) {
+    return filteredFoods.value.slice(0, props.maxItems);
   }
-  </style>
-  
+  return filteredFoods.value;
+});
+
+const getTagComponent = () => {
+  switch (props.category) {
+    case 'vegetable':
+      return VegetableTag;
+    case 'meat':
+      return MeatTag;
+    case 'grain':
+      return GrainTag;
+    default:
+      return VegetableTag;
+  }
+};
+
+const toggleActive = (food) => {
+  if (!food._isToggling) {
+    food._isToggling = true;  // 防止重复点击
+    foodStore.toggleFoodActive(food);
+    foodStore.addFoodToSelected(food); 
+    emits('food-selected', food);
+    setTimeout(() => {
+      food._isToggling = false;  // 恢复状态
+    }, 300);
+  }
+};
+</script>
+
+<style scoped>
+.food-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+</style>
+

@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
       d3:
         specifier: ^7.9.0
         version: 7.9.0
+      element-ui:
+        specifier: ^2.15.14
+        version: 2.15.14(vue@3.4.31(typescript@5.4.5))
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.4.5)(vue@3.4.31(typescript@5.4.5))
@@ -682,8 +688,20 @@ packages:
   assertion-error@1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
 
+  async-validator@1.8.5:
+    resolution: {integrity: sha512-tXBM+1m056MAX0E8TL2iCjg8WvSyXu0Zc8LNtYqrVeyoL3+esHRZ4SieE9fKQyyU09uONjnMEjrNBMqT0mbvmA==}
+
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+
+  axios@1.7.2:
+    resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
+
+  babel-helper-vue-jsx-merge-props@2.0.3:
+    resolution: {integrity: sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==}
+
+  babel-runtime@6.26.0:
+    resolution: {integrity: sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -765,6 +783,10 @@ packages:
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
+
+  core-js@2.6.12:
+    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -927,6 +949,10 @@ packages:
     resolution: {integrity: sha512-SUwdGfqdKOwxCPeVYjwSyRpJ7Z+fhpwIAtmCUdZIWZ/YP5R9WAsyuSgpLVDi9bjWoN2LXHNss/dk3urXtdQxGg==}
     engines: {node: '>=6'}
 
+  deepmerge@1.5.2:
+    resolution: {integrity: sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==}
+    engines: {node: '>=0.10.0'}
+
   default-browser-id@5.0.0:
     resolution: {integrity: sha512-A6p/pu/6fyBcA1TRz/GqWYPViplrftcW2gZC9q79ngNCKAeR/X3gcEdXQHl4KNXV+3wgIJ1CPkJQ3IHM6lcsyA==}
     engines: {node: '>=18'}
@@ -960,6 +986,11 @@ packages:
 
   electron-to-chromium@1.4.822:
     resolution: {integrity: sha512-qJzHIt4dRRFKjHHvaExCrG95F65kUP3xysaEZ4I2+/R/uIyr5Ar5g/rkAnrRz0parRUYwzpqN8Pz1HgoiYQPpg==}
+
+  element-ui@2.15.14:
+    resolution: {integrity: sha512-2v9fHL0ZGINotOlRIAJD5YuVB8V7WKxrE9Qy7dXhRipa035+kF7WuU/z+tEmLVPBcJ0zt8mOu1DKpWcVzBK8IA==}
+    peerDependencies:
+      vue: ^2.5.17
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -996,6 +1027,15 @@ packages:
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
+
+  follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   foreground-child@3.2.1:
     resolution: {integrity: sha512-PXUUyLqrR2XCWICfv6ukppP96sdFwWbNEnfEMt7jNsISjMsvaLNinAHNDYyvkyU+SZG2BTSbT5NjG+vZslfGTA==}
@@ -1234,6 +1274,9 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
 
+  normalize-wheel@1.0.1:
+    resolution: {integrity: sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==}
+
   npm-normalize-package-bin@3.0.1:
     resolution: {integrity: sha512-dMxCf+zZ+3zeQZXKxmyuCKlIDPGuv8EF940xbkC4kQVDTtqoh6rJFO+JTKSA6/Rwi0getWmtuy4Itup0AMcaDQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -1330,6 +1373,9 @@ packages:
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
 
+  proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+
   psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
 
@@ -1347,8 +1393,14 @@ packages:
     resolution: {integrity: sha512-0J+Msgym3vrLOUB3hzQCuZHII0xkNGCtz/HJH9xZshwv9DbDwkw1KaE3gx/e2J5rpEY5rtOy6cyhKOPrkP7FZw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  regenerator-runtime@0.11.1:
+    resolution: {integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==}
+
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+
+  resize-observer-polyfill@1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
@@ -1462,6 +1514,10 @@ packages:
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+
+  throttle-debounce@1.1.0:
+    resolution: {integrity: sha512-XH8UiPCQcWNuk2LYePibW/4qL97+ZQ1AN3FNXwZRBNPPowo/NRU5fAlDCSNBJIYCKbioZfuYtMhG4quqoJhVzg==}
+    engines: {node: '>=4'}
 
   tinybench@2.8.0:
     resolution: {integrity: sha512-1/eK7zUnIklz4JUUlL+658n58XO2hHLQfSk1Zf2LKieUjxidN16eKFEoDEfjHc3ohofSSqK3X5yO6VGb6iW8Lw==}
@@ -2346,7 +2402,26 @@ snapshots:
 
   assertion-error@1.1.0: {}
 
+  async-validator@1.8.5:
+    dependencies:
+      babel-runtime: 6.26.0
+
   asynckit@0.4.0: {}
+
+  axios@1.7.2:
+    dependencies:
+      follow-redirects: 1.15.6
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
+  babel-helper-vue-jsx-merge-props@2.0.3: {}
+
+  babel-runtime@6.26.0:
+    dependencies:
+      core-js: 2.6.12
+      regenerator-runtime: 0.11.1
 
   balanced-match@1.0.2: {}
 
@@ -2427,6 +2502,8 @@ snapshots:
   copy-anything@3.0.5:
     dependencies:
       is-what: 4.1.16
+
+  core-js@2.6.12: {}
 
   cross-spawn@7.0.3:
     dependencies:
@@ -2609,6 +2686,8 @@ snapshots:
     dependencies:
       type-detect: 4.0.8
 
+  deepmerge@1.5.2: {}
+
   default-browser-id@5.0.0: {}
 
   default-browser@5.2.1:
@@ -2636,6 +2715,16 @@ snapshots:
       semver: 7.6.2
 
   electron-to-chromium@1.4.822: {}
+
+  element-ui@2.15.14(vue@3.4.31(typescript@5.4.5)):
+    dependencies:
+      async-validator: 1.8.5
+      babel-helper-vue-jsx-merge-props: 2.0.3
+      deepmerge: 1.5.2
+      normalize-wheel: 1.0.1
+      resize-observer-polyfill: 1.5.1
+      throttle-debounce: 1.1.0
+      vue: 3.4.31(typescript@5.4.5)
 
   emoji-regex@8.0.0: {}
 
@@ -2692,6 +2781,8 @@ snapshots:
       onetime: 6.0.0
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
+
+  follow-redirects@1.15.6: {}
 
   foreground-child@3.2.1:
     dependencies:
@@ -2914,6 +3005,8 @@ snapshots:
     dependencies:
       abbrev: 2.0.0
 
+  normalize-wheel@1.0.1: {}
+
   npm-normalize-package-bin@3.0.1: {}
 
   npm-run-all2@6.2.2:
@@ -3004,6 +3097,8 @@ snapshots:
 
   proto-list@1.2.4: {}
 
+  proxy-from-env@1.1.0: {}
+
   psl@1.9.0: {}
 
   punycode@2.3.1: {}
@@ -3017,7 +3112,11 @@ snapshots:
       json-parse-even-better-errors: 3.0.2
       npm-normalize-package-bin: 3.0.1
 
+  regenerator-runtime@0.11.1: {}
+
   requires-port@1.0.0: {}
+
+  resize-observer-polyfill@1.5.1: {}
 
   rfdc@1.4.1: {}
 
@@ -3126,6 +3225,8 @@ snapshots:
   svg-tags@1.0.0: {}
 
   symbol-tree@3.2.4: {}
+
+  throttle-debounce@1.1.0: {}
 
   tinybench@2.8.0: {}
 
