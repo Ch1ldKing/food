@@ -3,6 +3,7 @@
     class="grain-tag rounded tag"
     p="x-2"
     border="~ wheat"
+    :style="tagStyle"
     :class="[
       active ? 'bg-wheat-dark opacity-90 text-wheat-light' : 'bg-wheat-light opacity-20 text-wheat-dark'
     ]"
@@ -14,18 +15,39 @@
       alt="Grain Image" 
       class="grain-img floating-img" 
       :class="{ 'active': active , 'grain-img-active': active}" 
+      :style="imgStyle"
     />
     <slot />
-
   </span>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
   active: boolean
 }>()
+
+/* 计算tag左右的空隙 */
+const tagStyle = computed(() => {
+  return props.active ? {
+    paddingLeft: '0rem',
+    paddingRight: '0.6rem'
+  } : {
+    paddingLeft: '0.6rem',
+    paddingRight: '0.6rem'
+  };
+});
+
+/* 定义计算属性 tagStyle 和 imgStyle */
+const imgStyle = computed(() => {
+  return props.active ? {
+    marginLeft: '-15px' // active 状态下减少左边的空隙
+  } : {
+    marginLeft: '5px' // 平常状态下保持正常
+  };
+});
 
 </script>
 
@@ -38,7 +60,7 @@ const props = defineProps<{
   border: 2px solid #F5DEB3; /* 使用小麦颜色的边框 */
   border-radius: 1rem; /* 增加边框圆角半径 */
   cursor: pointer; /* 鼠标指针变为手型 */
-  transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+  transition: background-color 0.3s, color 0.3s, padding 0.3s; /* 添加过渡效果 */
   position: relative; /* 为了让图片可以相对定位 */
 }
   
@@ -46,6 +68,7 @@ const props = defineProps<{
   width: 16px;
   height: 16px;
   margin-right: 10px;
+  margin-left: 0px; /* 设置 margin-left 以减少空隙 */
   transition: width 0.3s, height 0.3s, transform 1s;
   position: relative;
   left: 0px; /* 向左移动图片 */
