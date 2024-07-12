@@ -37,8 +37,8 @@
     margin: 10px 0; /* 按钮之间的间距 */
     padding: 10px;
     font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
+    color: #000000;
+    background-color: #eff1f1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
