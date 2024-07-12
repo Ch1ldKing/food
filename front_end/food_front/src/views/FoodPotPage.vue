@@ -3,6 +3,7 @@ import Pot from '@/components/Pot.vue';
 import { ref } from 'vue'
 import FoodList from '@/components/FoodList.vue'
 import potImage from '@/assets/food_img/bowl.png'
+import { useFoodStore } from '@/stores/foodStore';
 import 'element-ui/lib/theme-chalk/index.css';
 //import { ElRow, ElCol, ElButton } from 'element-plus'
 //import 'element-plus/lib/theme-chalk/index.css'
