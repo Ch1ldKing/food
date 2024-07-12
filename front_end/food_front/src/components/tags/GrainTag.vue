@@ -9,9 +9,9 @@
     ]"
     @click="$emit('click')"
   >
-    <!-- 引入了图片，暂时每种分类只有一个，之后可以区分 -->
+    <!-- 动态选择图片 -->
     <img 
-      src="@/assets/food_img/Bread.png" 
+      :src="getImageSrc(name)" 
       alt="Grain Image" 
       class="grain-img floating-img" 
       :class="{ 'active': active , 'grain-img-active': active}" 
@@ -22,14 +22,34 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
+import RiceImage from '@/assets/food_img/rice.png';
+import WheatImage from '@/assets/food_img/Wheat.png';
+import QuinoaImage from '@/assets/food_img/Quinoa.png';
+import OatImage from '@/assets/food_img/Oat.png';
+import NoodlesImage from '@/assets/food_img/Noodles.png';
+
+
+// 引入更多的图片...
 
 const props = defineProps<{
-  active: boolean
+  active: boolean,
+  name: string
 }>()
 
-/* 计算tag左右的空隙 */
+/* 根据名称选择图片 */
+const getImageSrc = (name: string) => {
+  switch (name) {
+    case 'Rice': return RiceImage;
+    case 'Wheat': return WheatImage;
+    case 'Quinoa': return QuinoaImage;
+    case 'Oat': return OatImage;
+    case 'Noodles': return NoodlesImage;
+    // 添加更多的图片映射...
+    default: return '';
+  }
+};
+
 const tagStyle = computed(() => {
   return props.active ? {
     paddingLeft: '0rem',
@@ -40,7 +60,6 @@ const tagStyle = computed(() => {
   };
 });
 
-/* 定义计算属性 tagStyle 和 imgStyle */
 const imgStyle = computed(() => {
   return props.active ? {
     marginLeft: '-15px' // active 状态下减少左边的空隙
@@ -48,12 +67,9 @@ const imgStyle = computed(() => {
     marginLeft: '5px' // 平常状态下保持正常
   };
 });
-
 </script>
 
-<!-- CSS start here -->
 <style scoped>
-
 .grain-tag {
   display: flex;
   align-items: center;
@@ -64,7 +80,6 @@ const imgStyle = computed(() => {
   transition: background-color 0.3s, color 0.3s, padding 0.3s; /* 添加过渡效果 */
   position: relative; /* 为了让图片可以相对定位 */
 }
-  
 .grain-img {
   width: 16px;
   height: 16px;
@@ -74,29 +89,24 @@ const imgStyle = computed(() => {
   position: relative;
   left: 0px; /* 向左移动图片 */
 }
-
 .grain-img.active {
   transform: translateY(500px)translateX(-50%); /* 图片跳出父容器 */
  
 }
-  
-/* 颜色变量 */
 .bg-wheat-light {
   background-color: #FAF3E0;
 }
-  
 .bg-wheat-dark {
   background-color: #DEB887;
 }
-  
 .text-wheat-light {
   color: #FAF3E0;
 }
-  
 .text-wheat-dark {
   color: #8B4513;
 }
 </style>
+
 
 
 
