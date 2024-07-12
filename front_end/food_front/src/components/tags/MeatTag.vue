@@ -34,13 +34,11 @@
 }
   
   .meat-tag.active {
-    background-color: #FF6347; /* 激活时使用红色 */
-    color: #FAF3E0; /* 选中时的文本颜色 */
   }
   
-  .meat-tag:hover {
-    background-color: #FF6347; /* 鼠标悬停时使用红色 */
-  }
+/*   .meat-tag:hover {
+    background-color: #FF6347;} /* 鼠标悬停时使用红色  */
+  
   
   .meat-img {
     width: 20px;

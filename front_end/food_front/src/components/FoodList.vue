@@ -1,7 +1,7 @@
 <template>
   <div class="food-list">
     <component 
-     v-for="food in filteredFoods" 
+     v-for="food in displayedFoods" 
     :is="getTagComponent()" 
     :key="food.id" 
     :active="food.active"
@@ -21,7 +21,11 @@ import MeatTag from '@/components/tags/MeatTag.vue';
 import GrainTag from '@/components/tags/GrainTag.vue';
 
 const props = defineProps<{
-  category: 'vegetable' | 'meat' | 'grain'
+  category: 'vegetable' | 'meat' | 'grain',
+  maxItems: {
+    type: Number,
+    default: null
+  }
 }>();
 
 const emits = defineEmits(['food-selected']);
@@ -36,6 +40,13 @@ const filteredFoods = computed(() => {
   return foodStore.getFoodsByCategory(props.category);
 });
 
+const displayedFoods = computed(() => {
+  if (props.maxItems !== null) {
+    return filteredFoods.value.slice(0, props.maxItems);
+  }
+  return filteredFoods.value;
+});
+
 const getTagComponent = () => {
   switch (props.category) {
     case 'vegetable':
@@ -46,7 +57,6 @@ const getTagComponent = () => {
       return GrainTag;
     default:
       return VegetableTag;
-
   }
 };
 
@@ -69,3 +79,4 @@ const toggleActive = (food) => {
   gap: 10px;
 }
 </style>
+
