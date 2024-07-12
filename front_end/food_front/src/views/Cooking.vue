@@ -2,8 +2,8 @@
   <div class="common-layout">
     <el-container>
       <el-main class="main-content"> <!-- 添加一个类来调整el-main的样式 -->
-        Main
-        <FoodList />
+    
+        <Cookbook/>
       </el-main>
       <!-- 将el-footer固定在底部 -->
       <el-footer class="fixed-footer">
@@ -17,11 +17,13 @@
 import { defineComponent, ref } from 'vue';
 import Pot from '../components/Pot.vue';
 import FoodList from '@/components/FoodList.vue'
+import Cookbook from '@/components/Cookbook.vue'
 
 export default defineComponent({
     components: {
         Pot,
-        FoodList
+        FoodList,
+        Cookbook
     },
     setup() {
         const showPot = ref(true); // 控制 Pot 组件的显示
@@ -55,12 +57,13 @@ export default defineComponent({
     text-align: center;
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
-    left: -1px; /* 向左移动1px，可以根据需要调整距离 */
+    left: 0px; /* 向左移动1px，可以根据需要调整距离 */
 }
 
 /* 调整el-main的样式以避免内容被固定的el-footer遮挡 */
 .main-content {
     padding-bottom: 60px; /* 确保主内容在底部有足够的空间 */
+    justify-content: center;
 }
 </style>
 
