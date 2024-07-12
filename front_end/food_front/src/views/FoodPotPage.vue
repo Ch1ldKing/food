@@ -17,7 +17,7 @@ const foodStore = useFoodStore();
 
 
 const handleFoodSelected = (food) => {
-  console.log('Selected food:', food);
+  console.log('当前点击的食材:', food);
 }
 
 const toggleShowAll = (category) => {
