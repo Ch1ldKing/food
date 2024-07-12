@@ -28,14 +28,27 @@ export const useFoodStore = defineStore('food', {
       const targetFood = this.foods.find(f => f.id === food.id);
       if (targetFood) {
         targetFood.active = !targetFood.active;
+        if (targetFood.active) {
+          this.addFoodToSelected(targetFood);
+        } else {
+          this.removeFoodFromSelected(targetFood);
+        }
+        console.log('选中的食材数组：', this.selectedFoods);
         //targetFood._isToggling = targetFood.active; // 同步 _isToggling 与 active
       }
     },
-    addFoodToSelected(food) { // 新增
+    addFoodToSelected(food) {
       if (!this.selectedFoods.find(f => f.id === food.id)) {
         this.selectedFoods.push({ id: food.id, name: food.name, category: food.category });
+        
       }
+    },
+
+    removeFoodFromSelected(food) {
+      this.selectedFoods = this.selectedFoods.filter(f=>f.id !== food.id);
+      
     }
+    
   },
 
   

@@ -18,7 +18,6 @@ const foodStore = useFoodStore();
 
 const handleFoodSelected = (food) => {
   console.log('Selected food:', food);
-  foodStore.addFoodToSelected(food);
 }
 
 const toggleShowAll = (category) => {
