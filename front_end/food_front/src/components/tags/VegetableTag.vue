@@ -3,53 +3,84 @@
     class="vegetable-tag rounded tag"
     p="x-2"
     border="~ green-200 dark:green-800"
+    :style="tagStyle"
     :class="[ 
       active ? 'bg-wheat-dark opacity-90 text-wheat-light' : 'bg-wheat-light opacity-20 text-wheat-dark'
     ]"
     @click="$emit('click')"
-  >  <!-- 引入了图片，暂时每种分类只有一个，之后可以区分 -->
-    <img src="@/assets/food_img/Bok_Choy.png" alt="Vegetable Image" class="vegetable-img" />
+  >  
+  <!-- 引入了图片，暂时每种分类只有一个，之后可以区分 -->
+    <img 
+    src="@/assets/food_img/Bok_Choy.png" 
+    alt="Vegetable Image" 
+    class="vegetable-img floating-img" 
+   :class="{ 'active': active , 'grain-img-active': active}" 
+   :style="imgStyle"
+    />
     <slot />
   </span>
 </template>
   
   
   <script lang="ts" setup>
+  import { ref } from 'vue';
+  import { computed } from 'vue';
+
   // 赋予属性，是否选中
   const props = defineProps<{
     active: boolean
   }>()
+
+  /* 计算tag左右的空隙 */
+const tagStyle = computed(() => {
+  return props.active ? {
+    paddingLeft: '0rem',
+    paddingRight: '0.6rem'
+  } : {
+    paddingLeft: '0.6rem',
+    paddingRight: '0.6rem'
+  };
+});
+
+/* 定义计算属性 tagStyle 和 imgStyle */
+const imgStyle = computed(() => {
+  return props.active ? {
+    marginLeft: '-15px' // active 状态下减少左边的空隙
+  } : {
+    marginLeft: '5px' // 平常状态下保持正常
+  };
+});
+
   </script>
   
   <!--   CSS start here -->
   <style scoped>
   
-  .vegetable-tag {
+.vegetable-tag {
   display: flex;
   align-items: center;
   padding: 0.3rem 0.6rem; /* 缩小内边距 */
   border: 2px solid #32CD32; /* 使用小麦颜色的边框 */
   border-radius: 1rem; /* 增加边框圆角半径 */
   cursor: pointer; /* 鼠标指针变为手型 */
-  transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+  transition: background-color 0.3s, color 0.3s, padding 0.3s; /* 添加过渡效果 */
+  position: relative; /* 为了让图片可以相对定位 */
 }
 
+.vegetable-img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  margin-left: 0px; /* 设置 margin-left 以减少空隙 */
+  transition: width 0.3s, height 0.3s, transform 1s;
+  position: relative;
+  left: 0px; /* 向左移动图片 */
+}
   
-  
-  .vegetable-tag.active {
-    background-color: #32CD32; /* 激活时使用绿色 */
-  }
-  
-/*   .vegetable-tag:hover {
-    background-color: #32CD32; }/* 鼠标悬停时使用绿色 */ 
-  
-  
-  .vegetable-img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px; /* 图片与文本之间的间距 */
-  }
-  
+.vegetable-img.active {
+  transform: translateY(900px) translateX(-50%); /* 移动到屏幕底部，水平居中 */
+}
+    
   /* 颜色变量 */
   .bg-wheat-light {
     background-color: #90EE90;

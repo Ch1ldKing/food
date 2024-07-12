@@ -53,6 +53,7 @@ const imgStyle = computed(() => {
 
 <!-- CSS start here -->
 <style scoped>
+
 .grain-tag {
   display: flex;
   align-items: center;
