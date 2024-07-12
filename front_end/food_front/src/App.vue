@@ -120,7 +120,7 @@ export default defineComponent({
 
 .dots {
   position: absolute;
-  top: 10px;
+  top: 0px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -128,10 +128,13 @@ export default defineComponent({
 }
 
 .dots span {
-  width: 10px;
-  height: 10px;
-  background: gray;
-  border-radius: 50%;
+  width: 8px;
+    /* 缩小点的大小 */
+    height: 8px;
+    /* 缩小点的大小 */
+    background: lightgreen;
+    /* 浅绿色背景 */
+    border-radius: 50%;
 }
 
 .dots span.active {

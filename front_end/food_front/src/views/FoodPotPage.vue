@@ -12,9 +12,12 @@ const category = ref('vegetable')
 const showAllVegetables = ref(false)
 const showAllMeats = ref(false)
 const showAllGrains = ref(false)
+const foodStore = useFoodStore();
+
 
 const handleFoodSelected = (food) => {
-  console.log('Selected food:', food)
+  console.log('Selected food:', food);
+  foodStore.addFoodToSelected(food);
 }
 
 const toggleShowAll = (category) => {
@@ -32,63 +35,66 @@ const toggleShowAll = (category) => {
 
 <template>
   <div class="food-pot-page">
-<!--   这两个是子菜单的容器 -->
-    <div class="scroll-container">
-      <div class="container">
-        <h2>Choose your ingredients</h2>
-        
-        <row :gutter="20">
-          <col :span="24">
-            <card class="preference-box" shadow="always">
-              <h3 slot="header">Vegetables</h3>
-              <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
-              <div v-show="!showAllVegetables">
-                <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />
-              </div>
-              <button type="primary" @click="toggleShowAll('vegetables')">
-                {{ showAllVegetables ? 'Show Less' : 'Show More' }}
-              </button>
-            </card>
-          </col>
-        </row>
+    <!--   这两个是子菜单的容器 -->
+    <el-container>
+      <el-main class="main-content">
+        <div class="scroll-container">
+          <div class="container">
+            <h2>Choose your ingredients</h2>
 
-        <row :gutter="20">
-          <col :span="24">
-            <card class="preference-box" shadow="always">
-              <h3 slot="header">Meat</h3>
-              <FoodList category="meat" @food-selected="handleFoodSelected" v-show="showAllMeats" />
-              <div v-show="!showAllMeats">
-                <FoodList category="meat" @food-selected="handleFoodSelected" :max-items="3" />
-              </div>
-              <button type="primary" @click="toggleShowAll('meats')">
-                {{ showAllMeats ? 'Show Less' : 'Show More' }}
-              </button>
-            </card>
-          </col>
-        </row>
+            <row :gutter="20">
+              <col :span="24">
+              <card class="preference-box" shadow="always">
+                <h3 slot="header">Vegetables</h3>
+                <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
+                <div v-show="!showAllVegetables">
+                  <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />
+                </div>
+                <button type="primary" @click="toggleShowAll('vegetables')">
+                  {{ showAllVegetables ? 'Show Less' : 'Show More' }}
+                </button>
+              </card>
+              </col>
+            </row>
 
-        <row :gutter="20">
-          <col :span="24">
-            <card class="preference-box" shadow="always">
-              <h3 slot="header">Grains</h3>
-              <FoodList category="grain" @food-selected="handleFoodSelected" v-show="showAllGrains" />
-              <div v-show="!showAllGrains">
-                <FoodList category="grain" @food-selected="handleFoodSelected" :max-items="3" />
-              </div>
-              <button type="primary" @click="toggleShowAll('grains')">
-                {{ showAllGrains ? 'Show Less' : 'Show More' }}
-              </button>
-            </card>
-          </col>
-        </row>
-        
-      </div>
-    </div>
-<!--     这个是单独在最底下的锅的容器 -->
-    <div class="pot-container">
-      <Pot />
-    </div>
-    
+            <row :gutter="20">
+              <col :span="24">
+              <card class="preference-box" shadow="always">
+                <h3 slot="header">Meat</h3>
+                <FoodList category="meat" @food-selected="handleFoodSelected" v-show="showAllMeats" />
+                <div v-show="!showAllMeats">
+                  <FoodList category="meat" @food-selected="handleFoodSelected" :max-items="3" />
+                </div>
+                <button type="primary" @click="toggleShowAll('meats')">
+                  {{ showAllMeats ? 'Show Less' : 'Show More' }}
+                </button>
+              </card>
+              </col>
+            </row>
+
+            <row :gutter="20">
+              <col :span="24">
+              <card class="preference-box" shadow="always">
+                <h3 slot="header">Grains</h3>
+                <FoodList category="grain" @food-selected="handleFoodSelected" v-show="showAllGrains" />
+                <div v-show="!showAllGrains">
+                  <FoodList category="grain" @food-selected="handleFoodSelected" :max-items="3" />
+                </div>
+                <button type="primary" @click="toggleShowAll('grains')">
+                  {{ showAllGrains ? 'Show Less' : 'Show More' }}
+                </button>
+              </card>
+              </col>
+            </row>
+
+          </div>
+        </div>
+      </el-main>
+      <!--     这个是单独在最底下的锅的容器 -->
+      <el-footer class="fixed-footer">
+        <Pot />
+      </el-footer>
+    </el-container>
   </div>
 </template>
 
@@ -96,6 +102,25 @@ const toggleShowAll = (category) => {
 <!-- 下面是全部CSS的代码和注脚 -->
 
 <style>
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  /* 添加阴影效果 */
+  left: 0px;
+  /* 向左移动1px，可以根据需要调整距离 */
+}
+
+/* 调整el-main的样式以避免内容被固定的el-footer遮挡 */
+.main-content {
+  padding-bottom: 60px;
+  /* 确保主内容在底部有足够的空间 */
+}
+
 .food-pot-page {
   display: flex;
   flex-direction: column;

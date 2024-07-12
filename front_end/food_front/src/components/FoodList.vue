@@ -64,6 +64,7 @@ const toggleActive = (food) => {
   if (!food._isToggling) {
     food._isToggling = true;  // 防止重复点击
     foodStore.toggleFoodActive(food);
+    foodStore.addFoodToSelected(food); 
     emits('food-selected', food);
     setTimeout(() => {
       food._isToggling = false;  // 恢复状态
