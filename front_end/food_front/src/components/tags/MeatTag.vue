@@ -9,24 +9,65 @@
       ]"
        @click="$emit('click')"
     >
-    <!-- 引入了图片，暂时每种分类只有一个，之后可以区分 -->
-    <img src="@/assets/food_img/Raw_Porkchop.png" 
-    alt="Meat Image" 
-    class="meat-img"
-    :class="{ 'active': active , 'grain-img-active': active}" 
-    :style="imgStyle" 
+
+    <!-- 动态选择图片 -->
+    <img 
+      :src="getImageSrc(name)" 
+      alt="Grain Image" 
+      class="meat-img floating-img" 
+      :class="{ 'active': active , 'grain-img-active': active}" 
+      :style="imgStyle"
     />
-      <slot />
-    </span>
-  </template>
+    <slot />
+  </span>
+</template>
+
+
   
   <script lang="ts" setup>
     import { ref } from 'vue';
     import { computed } from 'vue';
-
+    import ChickenImage from '@/assets/food_img/Chicken.png';
+    import BeefImage from '@/assets/food_img/beef.png';
+    import PorkImage from '@/assets/food_img/Raw_Porkchop.png';
+    import LambImage from '@/assets/food_img/Goat.png';
+    import TurkeyImage from '@/assets/food_img/Golden_Chicken.png';
+    import BaconImage from '@/assets/food_img/bacon.webp';
+    import SausageImage from '@/assets/food_img/Bread.png';
+    import SalmonImage from '@/assets/food_img/Salmon.png';
+    import ShrimpImage from '@/assets/food_img/Shrimp.png';
+    import CrabImage from '@/assets/food_img/Crab.png';
+    import ScallopsImage from '@/assets/food_img/Clam.png';
+    import CodImage from '@/assets/food_img/Tuna.png';
+    import EggImage from '@/assets/food_img/egg.png';
+    import MilkImage from '@/assets/food_img/Milk.png';
+    
   const props = defineProps<{
-    active: boolean
+    active: boolean,
+    name: string
   }>()
+
+  /* 根据名称选择图片 */
+const getImageSrc = (name: string) => {
+  switch (name) {
+    case 'Chicken': return ChickenImage;
+    case 'Beef': return BeefImage;
+    case 'Pork': return PorkImage;
+    case 'Lamb': return LambImage;
+    case 'Turkey': return TurkeyImage;
+    case 'Bacon': return BaconImage;
+    case 'Sausage': return SausageImage;
+    case 'Salmon': return SalmonImage;
+    case 'Shrimp': return ShrimpImage;
+    case 'Crab': return CrabImage;
+    case 'Scallops': return ScallopsImage;
+    case 'Cod': return CodImage;
+    case 'Egg': return EggImage;
+    case 'Milk': return MilkImage;
+    // 添加更多的图片映射...
+    default: return '';
+  }
+};
 
   /* 计算tag左右的空隙 */
   const tagStyle = computed(() => {
