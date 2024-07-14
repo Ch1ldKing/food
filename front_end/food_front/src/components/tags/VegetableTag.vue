@@ -40,6 +40,11 @@
   import CauliflowerImage from '@/assets/food_img/Cauliflower.png';
   import BroccoliImage from '@/assets/food_img/Fiddlehead_Fern.png';
 
+  import CornImage from '@/assets/food_img/Corn.png';
+  import PeaImage from '@/assets/food_img/Green_Bean.png';
+  import MushroomsImage from '@/assets/food_img/Mushroom.png';
+  import PumpkinImage from '@/assets/food_img/Pumpkin.png';
+
   // 赋予属性，是否选中
   const props = defineProps<{
     active: boolean,
@@ -74,7 +79,12 @@ const tagStyle = computed(() => {
     case 'Cauliflower': return CauliflowerImage;
     case 'Broccoli': return BroccoliImage;
 
-    
+    case 'Corn': return CornImage;
+    case 'Pea': return PeaImage;
+    case 'Mushrooms': return MushroomsImage;
+    case 'Pumpkin': return PumpkinImage;
+
+
 
     // 添加更多的图片映射...
     default: return '';
