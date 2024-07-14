@@ -9,13 +9,13 @@
     ]"
     @click="$emit('click')"
   >  
-  <!-- 引入了图片，暂时每种分类只有一个，之后可以区分 -->
+    <!-- 动态选择图片 -->
     <img 
-    src="@/assets/food_img/Bok_Choy.png" 
-    alt="Vegetable Image" 
-    class="vegetable-img floating-img" 
-   :class="{ 'active': active , 'grain-img-active': active}" 
-   :style="imgStyle"
+      :src="getImageSrc(name)" 
+      alt="Veg Image" 
+      class="vegetable-img floating-img" 
+      :class="{ 'active': active , 'grain-img-active': active}" 
+      :style="imgStyle"
     />
     <slot />
   </span>
@@ -26,9 +26,24 @@
   import { ref } from 'vue';
   import { computed } from 'vue';
 
+  import CarrotImage from '@/assets/food_img/carrot.png';
+  import PotatoImage from '@/assets/food_img/potato.png';
+  import OnionImage from '@/assets/food_img/Garlic.png';
+  import TomatoImage from '@/assets/food_img/tomato.webp';
+  import PepperImage from '@/assets/food_img/Cave_Carrot.png';
+  import CucumberImage from '@/assets/food_img/Salad.png';
+  import EggplantImage from '@/assets/food_img/Eggplant.png';
+  import ZucchiniImage from '@/assets/food_img/Leek.png';
+  import LettuceImage from '@/assets/food_img/Kale.png';
+  import SweetPotatoImage from '@/assets/food_img/SPotato.png';
+  import SproutsImage from '@/assets/food_img/Artichoke.png';
+  import CauliflowerImage from '@/assets/food_img/Cauliflower.png';
+  import BroccoliImage from '@/assets/food_img/Fiddlehead_Fern.png';
+
   // 赋予属性，是否选中
   const props = defineProps<{
-    active: boolean
+    active: boolean,
+    name: string
   }>()
 
   /* 计算tag左右的空隙 */
@@ -41,6 +56,30 @@ const tagStyle = computed(() => {
     paddingRight: '0.6rem'
   };
 });
+
+  /* 根据名称选择图片 */
+  const getImageSrc = (name: string) => {
+  switch (name) {
+    case 'Carrot': return CarrotImage;
+    case 'Potato': return PotatoImage;
+    case 'Onion': return OnionImage;
+    case 'Tomato': return TomatoImage;
+    case 'Pepper': return PepperImage;
+    case 'Cucumber': return CucumberImage;
+    case 'Eggplant': return EggplantImage;
+    case 'Zucchini': return ZucchiniImage;
+    case 'Lettuce': return LettuceImage;
+    case 'Sweet Potato': return SweetPotatoImage;
+    case 'Sprouts': return SproutsImage;
+    case 'Cauliflower': return CauliflowerImage;
+    case 'Broccoli': return BroccoliImage;
+
+    
+
+    // 添加更多的图片映射...
+    default: return '';
+  }
+};
 
 /* 定义计算属性 tagStyle 和 imgStyle */
 const imgStyle = computed(() => {

@@ -13,7 +13,7 @@
     <!-- 动态选择图片 -->
     <img 
       :src="getImageSrc(name)" 
-      alt="Grain Image" 
+      alt="Meat Image" 
       class="meat-img floating-img" 
       :class="{ 'active': active , 'grain-img-active': active}" 
       :style="imgStyle"
