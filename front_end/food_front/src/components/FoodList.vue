@@ -6,9 +6,11 @@
     :key="food.id" 
     :active="food.active"
     :foodName="food.name"
+    :name="food.name"  
     @click="toggleActive(food)">
       {{ food.name }}
     </component>
+      <!-- 传递name属性  :name="food.name"-->
   </div>
 </template>
 
