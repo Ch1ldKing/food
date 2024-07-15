@@ -33,7 +33,7 @@ export default defineComponent({
 
       { path: '/about', name: 'About' },
 
-      { path: '/button', name: 'Button' }
+      { path: '/search', name: 'Search' }
 
     ];
 
