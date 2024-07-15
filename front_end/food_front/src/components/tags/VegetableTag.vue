@@ -39,11 +39,15 @@
   import SproutsImage from '@/assets/food_img/Artichoke.png';
   import CauliflowerImage from '@/assets/food_img/Cauliflower.png';
   import BroccoliImage from '@/assets/food_img/Fiddlehead_Fern.png';
+  import CabbageImage from '@/assets/food_img/Bok_Choy.png';
 
   import CornImage from '@/assets/food_img/Corn.png';
   import PeaImage from '@/assets/food_img/Green_Bean.png';
   import MushroomsImage from '@/assets/food_img/Mushroom.png';
   import PumpkinImage from '@/assets/food_img/Pumpkin.png';
+  import AsparagusImage from '@/assets/food_img/Wild_Horseradish.png';
+  import TofuImage from '@/assets/food_img/Cheese.png';
+
 
   // 赋予属性，是否选中
   const props = defineProps<{
@@ -78,11 +82,17 @@ const tagStyle = computed(() => {
     case 'Sprouts': return SproutsImage;
     case 'Cauliflower': return CauliflowerImage;
     case 'Broccoli': return BroccoliImage;
+    case 'Cabbage': return CabbageImage;
+    case 'Asparagus': return AsparagusImage;
+
+    case 'Beans': return PeaImage;
 
     case 'Corn': return CornImage;
     case 'Pea': return PeaImage;
     case 'Mushrooms': return MushroomsImage;
+    case 'Tofu': return TofuImage;
     case 'Pumpkin': return PumpkinImage;
+    
 
 
 
