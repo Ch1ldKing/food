@@ -29,12 +29,12 @@ export const mockIngredients = [
     { id: 124, name: 'Pumpkin', category: 'vegetable' },
 
             // 添加水果
-    { id: 125, name: 'Apple', category: 'fruit' },
-    { id: 126, name: 'Lemon', category: 'fruit' },
-    { id: 127, name: 'Orange', category: 'fruit' },
-    { id: 128, name: 'Banana', category: 'fruit' },
-    { id: 129, name: 'Pineapple', category: 'fruit' },
-    { id: 130, name: 'Berries', category: 'fruit' },
+    { id: 125, name: 'Apple', category: 'vegetable' },
+    { id: 126, name: 'Lemon', category: 'vegetable' },
+    { id: 127, name: 'Orange', category: 'vegetable' },
+    { id: 128, name: 'Banana', category: 'vegetable' },
+    { id: 129, name: 'Pineapple', category: 'vegetable' },
+    { id: 130, name: 'Berries', category: 'vegetable' },
 
     // 添加谷物
     { id: 131, name: 'Quinoa', category: 'grain' },

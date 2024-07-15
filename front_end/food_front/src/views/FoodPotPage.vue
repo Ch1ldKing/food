@@ -45,7 +45,7 @@ const toggleShowAll = (category) => {
             <row :gutter="20">
               <col :span="24">
               <card class="preference-box" shadow="always">
-                <h3 slot="header">Vegetables</h3>
+                <h3 slot="header">Vegetables & Fruits</h3>
                 <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
                 <div v-show="!showAllVegetables">
                   <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />

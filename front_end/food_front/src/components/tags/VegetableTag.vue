@@ -49,6 +49,14 @@
   import TofuImage from '@/assets/food_img/Cheese.png';
 
 
+  import AppleImage from '@/assets/food_img/Apple.webp';
+  import LemonImage from '@/assets/food_img/Lemon.webp';
+  import OrangeImage from '@/assets/food_img/Blood_Orange.webp';
+  import BananaImage from '@/assets/food_img/Banana.webp';
+  import PineappleImage from '@/assets/food_img/Pineapple.webp';
+  import BerriesImage from '@/assets/food_img/Blackberry.png';
+
+
   // 赋予属性，是否选中
   const props = defineProps<{
     active: boolean,
@@ -92,9 +100,14 @@ const tagStyle = computed(() => {
     case 'Mushrooms': return MushroomsImage;
     case 'Tofu': return TofuImage;
     case 'Pumpkin': return PumpkinImage;
-    
 
+    case 'Apple': return AppleImage;
+    case 'Lemon': return LemonImage;
+    case 'Orange': return OrangeImage;
 
+    case 'Banana': return BananaImage;
+    case 'Pineapple': return PineappleImage;
+    case 'Berries': return BerriesImage;
 
     // 添加更多的图片映射...
     default: return '';
