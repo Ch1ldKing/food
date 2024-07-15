@@ -39,11 +39,23 @@
   import SproutsImage from '@/assets/food_img/Artichoke.png';
   import CauliflowerImage from '@/assets/food_img/Cauliflower.png';
   import BroccoliImage from '@/assets/food_img/Fiddlehead_Fern.png';
+  import CabbageImage from '@/assets/food_img/Bok_Choy.png';
 
   import CornImage from '@/assets/food_img/Corn.png';
   import PeaImage from '@/assets/food_img/Green_Bean.png';
   import MushroomsImage from '@/assets/food_img/Mushroom.png';
   import PumpkinImage from '@/assets/food_img/Pumpkin.png';
+  import AsparagusImage from '@/assets/food_img/Wild_Horseradish.png';
+  import TofuImage from '@/assets/food_img/Cheese.png';
+
+
+  import AppleImage from '@/assets/food_img/Apple.webp';
+  import LemonImage from '@/assets/food_img/Lemon.webp';
+  import OrangeImage from '@/assets/food_img/Blood_Orange.webp';
+  import BananaImage from '@/assets/food_img/Banana.webp';
+  import PineappleImage from '@/assets/food_img/Pineapple.webp';
+  import BerriesImage from '@/assets/food_img/Blackberry.png';
+
 
   // 赋予属性，是否选中
   const props = defineProps<{
@@ -78,13 +90,24 @@ const tagStyle = computed(() => {
     case 'Sprouts': return SproutsImage;
     case 'Cauliflower': return CauliflowerImage;
     case 'Broccoli': return BroccoliImage;
+    case 'Cabbage': return CabbageImage;
+    case 'Asparagus': return AsparagusImage;
+
+    case 'Beans': return PeaImage;
 
     case 'Corn': return CornImage;
     case 'Pea': return PeaImage;
     case 'Mushrooms': return MushroomsImage;
+    case 'Tofu': return TofuImage;
     case 'Pumpkin': return PumpkinImage;
 
+    case 'Apple': return AppleImage;
+    case 'Lemon': return LemonImage;
+    case 'Orange': return OrangeImage;
 
+    case 'Banana': return BananaImage;
+    case 'Pineapple': return PineappleImage;
+    case 'Berries': return BerriesImage;
 
     // 添加更多的图片映射...
     default: return '';
@@ -127,7 +150,7 @@ const imgStyle = computed(() => {
 }
   
 .vegetable-img.active {
-  transform: translateY(900px) translateX(-50%); /* 移动到屏幕底部，水平居中 */
+  transform: translateY(1200px) translateX(-80%); /* 移动到屏幕底部，水平居中 */
 }
     
   /* 颜色变量 */
