@@ -41,6 +41,7 @@ data() {
   align-items: center; /* 子元素居中对齐 */
   width: 100%; /* 宽度100% */
   padding: 20px; /* 内边距20px */
+  overflow-y: hidden; /* 禁用垂直滚动 */
 }
 
 .search-bar {
@@ -48,6 +49,7 @@ data() {
   align-items: center; /* 子元素居中对齐 */
   width: 100%; /* 宽度100% */
   max-width: 500px; /* 最大宽度500px */
+  margin-top: 10px;
   margin-bottom: 10px; /* 将搜索框底部外边距为10px */
 }
 
@@ -60,9 +62,10 @@ data() {
 }
 
 .search-button {
+  margin-top: 0px;
   padding: 10px; /* 内边距10px */
   font-size: 16px; /* 字体大小16px */
-  border: 1px solid #ccc; /* 边框为1px实线灰色 */
+  border: 0px solid #ccc; /* 边框为1px实线灰色 */
   border-left: none; /* 左边框取消 */
   background-color: #c7e7fc; /* 背景颜色淡蓝色 */
   color: white; /* 文字颜色白色 */
@@ -79,6 +82,9 @@ data() {
   margin-top: 18px; /* 将按钮容器顶部外边距为18px */
   margin-left: -25px; /* 负边距来抵消按钮自带的左边距 */
   margin-right: -25px; /* 负边距来抵消按钮自带的右边距 */
+
+  max-height: 800px; /* 设置最大高度，你可以根据需要调整 */
+  overflow-y: auto; /* 启用垂直滚动 */
 }
 
 .recipe-button {
@@ -93,6 +99,8 @@ data() {
   cursor: pointer; /* 鼠标指针样式为手型 */
   text-align: center; /* 文字居中对齐 */
   transition: border-color 0.3s ease; /* 添加边框颜色过渡效果 */
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0.1, 0.1); /* 添加阴影效果 */
 }
 
 .recipe-button:focus {
