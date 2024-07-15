@@ -41,6 +41,7 @@ data() {
   align-items: center; /* 子元素居中对齐 */
   width: 100%; /* 宽度100% */
   padding: 20px; /* 内边距20px */
+  overflow-y: hidden; /* 禁用垂直滚动 */
 }
 
 .search-bar {
@@ -81,6 +82,9 @@ data() {
   margin-top: 18px; /* 将按钮容器顶部外边距为18px */
   margin-left: -25px; /* 负边距来抵消按钮自带的左边距 */
   margin-right: -25px; /* 负边距来抵消按钮自带的右边距 */
+
+  max-height: 800px; /* 设置最大高度，你可以根据需要调整 */
+  overflow-y: auto; /* 启用垂直滚动 */
 }
 
 .recipe-button {
@@ -95,6 +99,8 @@ data() {
   cursor: pointer; /* 鼠标指针样式为手型 */
   text-align: center; /* 文字居中对齐 */
   transition: border-color 0.3s ease; /* 添加边框颜色过渡效果 */
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0.1, 0.1); /* 添加阴影效果 */
 }
 
 .recipe-button:focus {
