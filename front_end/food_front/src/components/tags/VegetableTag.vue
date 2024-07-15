@@ -150,7 +150,7 @@ const imgStyle = computed(() => {
 }
   
 .vegetable-img.active {
-  transform: translateY(900px) translateX(-50%); /* 移动到屏幕底部，水平居中 */
+  transform: translateY(1200px) translateX(-80%); /* 移动到屏幕底部，水平居中 */
 }
     
   /* 颜色变量 */
