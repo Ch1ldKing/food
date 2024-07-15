@@ -45,7 +45,7 @@ const toggleShowAll = (category) => {
             <row :gutter="20">
               <col :span="24">
               <card class="preference-box" shadow="always">
-                <h3 slot="header">Vegetables</h3>
+                <h3 slot="header">Vegetables & Fruits</h3>
                 <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
                 <div v-show="!showAllVegetables">
                   <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />
@@ -72,20 +72,10 @@ const toggleShowAll = (category) => {
               </col>
             </row>
 
-            <row :gutter="20">
-              <col :span="24">
-              <card class="preference-box" shadow="always">
-                <h3 slot="header">Grains</h3>
-                <FoodList category="grain" @food-selected="handleFoodSelected" v-show="showAllGrains" />
-                <div v-show="!showAllGrains">
-                  <FoodList category="grain" @food-selected="handleFoodSelected" :max-items="3" />
-                </div>
-                <button type="primary" @click="toggleShowAll('grains')">
-                  {{ showAllGrains ? 'Show Less' : 'Show More' }}
-                </button>
-              </card>
-              </col>
-            </row>
+
+<!--             原有的有show more & less的系统 grain的 -->
+        <h3>Grains</h3>
+        <FoodList category="grain" @food-selected="handleFoodSelected" />
 
           </div>
         </div>
@@ -183,20 +173,23 @@ const toggleShowAll = (category) => {
 
 button {
   margin-top: 10px;
-  padding: 10px 20px; /* 增加内边距 */
-  border: none;
-  border-radius: 25px; /* 更圆的边角 */
-  background-color: #28a745; /* 绿色背景 */
-  color: white;
-  font-size: 16px; /* 增加字体大小 */
+  padding: 0.6rem 0.6rem; /* 缩小内边距 */
+  border: 2px solid #32CD32; /* 使用小麦颜色的边框 */
+  border-radius: 1rem; /* 增加边框圆角半径 */
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  font-size: 14px; /* 增加字体大小 */
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
+  /* transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */ 
+  transition: background-color 0.3s, color 0.3s, padding 0.3s; /* 添加过渡效果 */
 }
 
-button:hover {
-  background-color: #218838; /* 悬停时的深绿色背景 */
-  transform: scale(1.05); /* 悬停时的放大效果 */
-}
+
+
+/* button:hover {
+  background-color: #218838; /* 悬停时的深绿色背景 
+  transform: scale(1.05);  悬停时的放大效果 
+} */
 
 button:active {
   background-color: #1e7e34; /* 点击时的更深绿色背景 */
