@@ -48,6 +48,7 @@ data() {
   align-items: center; /* 子元素居中对齐 */
   width: 100%; /* 宽度100% */
   max-width: 500px; /* 最大宽度500px */
+  margin-top: 10px;
   margin-bottom: 10px; /* 将搜索框底部外边距为10px */
 }
 
@@ -60,9 +61,10 @@ data() {
 }
 
 .search-button {
+  margin-top: 0px;
   padding: 10px; /* 内边距10px */
   font-size: 16px; /* 字体大小16px */
-  border: 1px solid #ccc; /* 边框为1px实线灰色 */
+  border: 0px solid #ccc; /* 边框为1px实线灰色 */
   border-left: none; /* 左边框取消 */
   background-color: #c7e7fc; /* 背景颜色淡蓝色 */
   color: white; /* 文字颜色白色 */
