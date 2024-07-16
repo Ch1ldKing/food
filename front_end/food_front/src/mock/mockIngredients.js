@@ -5,7 +5,7 @@ export const mockIngredients = [
     { id: 102, name: 'Chicken', category: 'meat' },
     { id: 103, name: 'Beef', category: 'meat' },
     { id: 104, name: 'Rice', category: 'grain' },
-    { id: 105, name: 'Wheat', category: 'grain' },
+    //{ id: 105, name: 'Wheat', category: 'grain' },
 
     // 添加更多蔬菜
     { id: 106, name: 'Onion', category: 'vegetable' },
