@@ -37,7 +37,7 @@ const router = createRouter({
     {
       path:'/mode',
       name:'Mode',
-      component: () => import('../views/ModeSelector.vue')
+      component: () => import('../components/Cookbook.vue')
     },
     {
       path:'/menu',
