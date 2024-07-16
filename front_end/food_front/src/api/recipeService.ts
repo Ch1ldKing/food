@@ -19,5 +19,17 @@ export default {
           throw error;
         });
     }
+  },
+
+  getChatRecipe(ingredients){
+     return foodHttp.post('/chat/generate-recipe',{ ingredients }) // 新的API端点
+      .then(response => {
+        console.log(response.data); // 打印获取的数据
+        return response.data;
+      })
+      .catch(error => {
+        console.error('Error fetching chat recipes:', error); // 打印错误信息
+        throw error;
+      });
   }
 }

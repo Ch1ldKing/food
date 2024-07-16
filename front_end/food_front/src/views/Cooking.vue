@@ -6,7 +6,7 @@
       </el-header>
       <el-main class="main-content"> <!-- 添加一个类来调整el-main的样式 -->
         <!--Buttons组件放在这个位置呈现-->
-          <h3 class="head">try these!</h3>
+          <h2 class="head">🥰 Choose one to eat 🥰</h2>
           <Cookbook/>
       </el-main>
         <!-- 将el-footer固定在底部 -->
@@ -71,7 +71,7 @@ export default defineComponent({
 
 /* 调整el-main的样式以避免内容s被固定的el-footer遮挡 */
 .main-content {
-    padding-bottom: 60px; /* 确保主内容在底部有足够的空间 */
+    padding-bottom: 70px; /* 确保主内容在底部有足够的空间 */
     justify-content: center;
     display: flex;
     flex-direction: column;

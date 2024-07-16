@@ -7,10 +7,10 @@
                 </div>
                 <div v-else class="button-container">
                     <button v-for="(recipe, index) in recipes.slice(0, 5)" :key="index" class="cute-button">
-                        {{ index + 1 }}: {{ recipe.recipe }}
+                        {{ recipe.recipe }}
                     </button>
-                    <button @click="navigateToSearch" class="cute-button">Button6: Goodbye! 👋</button>
-                    <button id="007" class="cute-button">Button7: Goodbye! 👋</button>
+                    <button class="cute-button">✨️ Want something new with AI?</button>
+                    <button @click="navigateToSearch" class="cute-button">For all recipes</button>
                 </div>
             </el-main>
         </el-container>

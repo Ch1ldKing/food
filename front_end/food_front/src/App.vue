@@ -29,7 +29,9 @@ export default defineComponent({
 
       { path: '/cooking', name: 'Cooking' },
 
-      { path: '/search', name: 'Search' }
+      { path: '/search', name: 'Search' },
+
+      { path:'/mode', nanme: 'Mode'}
 
     ];
 
