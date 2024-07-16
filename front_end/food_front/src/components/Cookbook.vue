@@ -9,7 +9,7 @@
                     <button v-for="(recipe, index) in recipes.slice(0, 5)" :key="index" class="cute-button">
                         {{ recipe.recipe }}
                     </button>
-                    <button class="cute-button">✨️ Want something new with AI?</button>
+                    <button @click="navigateToChat" class="cute-button">✨️ Want something new with AI?</button>
                     <button @click="navigateToSearch" class="cute-button">For all recipes</button>
                 </div>
             </el-main>
@@ -47,10 +47,15 @@ export default defineComponent({
             router.push({ name: 'Search' });
         };
 
+        const navigateToChat = () => {
+            router.push({ name: 'Chat' });
+        };
+
         return {
             recipes,
             loading,
             navigateToSearch,
+            navigateToChat
         };
     },
 });

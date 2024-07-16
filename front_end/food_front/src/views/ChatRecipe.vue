@@ -27,7 +27,7 @@ import { useRecipeStore } from '@/stores/recipeStore';
 import { defineComponent, computed,ref } from 'vue';
 
 export default defineComponent({
-  name: 'Mode',
+  name: 'Chat',
   setup() {
     const recipeStore = useRecipeStore();
     const ingredients = ref(['carrot', 'pork', 'cabbage']); // 示例配料

@@ -31,8 +31,6 @@ export default defineComponent({
 
       { path: '/search', name: 'Search' },
 
-      { path:'/mode', nanme: 'Mode'}
-
     ];
 
     const updateCurrentIndex = function () {

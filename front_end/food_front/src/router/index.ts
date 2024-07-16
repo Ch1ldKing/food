@@ -35,9 +35,9 @@ const router = createRouter({
       component: () => import('../components/Search.vue')
     },
     {
-      path:'/mode',
-      name:'Mode',
-      component: () => import('../views/ModeSelector.vue')
+      path:'/chat',
+      name:'Chat',
+      component: () => import('../views/ChatRecipe.vue')
     }
   ]
 })
