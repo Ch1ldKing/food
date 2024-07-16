@@ -38,7 +38,12 @@ const router = createRouter({
       path:'/mode',
       name:'Mode',
       component: () => import('../views/ModeSelector.vue')
-    }
+    },
+    {
+      path:'/menu',
+      name:'menu',
+      component: () => import('../views/Menu.vue')
+    },
   ]
 })
 

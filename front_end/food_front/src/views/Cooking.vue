@@ -2,11 +2,11 @@
   <div class="common-layout">
     <el-container>
       <el-header>
-        
+        <h2 class="head">🥰 Choose one to eat 🥰</h2>
       </el-header>
       <el-main class="main-content"> <!-- 添加一个类来调整el-main的样式 -->
         <!--Buttons组件放在这个位置呈现-->
-          <h2 class="head">🥰 Choose one to eat 🥰</h2>
+          
           <Cookbook/>
       </el-main>
         <!-- 将el-footer固定在底部 -->
