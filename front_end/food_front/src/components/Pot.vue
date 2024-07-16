@@ -38,9 +38,11 @@
   import { ref, watch } from 'vue';
   import { useFoodStore } from '@/stores/foodStore';
   import potImage from '@/assets/food_img/bowl.png'
+  import basketImage from '@/assets/food_img/basket.png'
 
   const foodStore = useFoodStore();
   const potFoods = ref([]);
+
 
   // Watch for changes in active foods
   watch(() => foodStore.foods, (newFoods) => {
