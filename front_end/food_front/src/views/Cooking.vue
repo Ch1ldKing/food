@@ -2,11 +2,12 @@
   <div class="common-layout">
     <el-container>
       <el-header>
-        <h3 class="head">try these!</h3>
+        
       </el-header>
       <el-main class="main-content"> <!-- 添加一个类来调整el-main的样式 -->
         <!--Buttons组件放在这个位置呈现-->
-          <Buttons2/>
+          <h2 class="head">🥰 Choose one to eat 🥰</h2>
+          <Cookbook/>
       </el-main>
         <!-- 将el-footer固定在底部 -->
       <el-footer class="fixed-footer">
@@ -19,17 +20,14 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Pot from '../components/Pot.vue';
-import FoodList from '@/components/FoodList.vue'
 import Cookbook from '@/components/Cookbook.vue'
-import Buttons2 from '@/components/Buttons2.0.vue'
+
 
 
 export default defineComponent({
     components: {
         Pot,
-        FoodList,
-        Cookbook,
-        Buttons2,
+        Cookbook
     },
     setup() {
         const showPot = ref(true); // 控制 Pot 组件的显示
@@ -46,6 +44,11 @@ export default defineComponent({
 .fade-leave-active {
     transition: opacity 0.5s;
 } */
+.common-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .fade-enter,
 .fade-leave-to
@@ -68,8 +71,10 @@ export default defineComponent({
 
 /* 调整el-main的样式以避免内容s被固定的el-footer遮挡 */
 .main-content {
-    padding-bottom: 60px; /* 确保主内容在底部有足够的空间 */
+    padding-bottom: 70px; /* 确保主内容在底部有足够的空间 */
     justify-content: center;
+    display: flex;
+    flex-direction: column;
     text-align: center;
     left: 0px;
     

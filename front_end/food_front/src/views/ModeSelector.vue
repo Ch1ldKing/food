@@ -1,120 +1,129 @@
 <template>
+
   <el-container class="container">
-    <!-- 顶部的三个长方形框 -->
     <el-header class="top-container">
-      <p class="head">Ingredients have been selected</p>
-      <div v-for="(ingredient, index) in ingredients" 
-          :key="index" 
-          class="rect-box">
-        {{ ingredient }}
+      <div class="card">
+        <div class="title">
+          {{ chatRecipe ? chatRecipe.dishName : 'No Recipe Available' }}
+        </div>
       </div>
-    </el-header>    
-
-    <!-- 中间的两个按钮 -->
+    </el-header>
     <el-main class="middle-container">
-      <button :key="'strict-mode'" class="mode-button">Strict mode</button>
-      <button :key="'relaxed-mode'" class="mode-button">Loose mode</button>
+      <div v-if="chatRecipe">
+        <p>{{ chatRecipe.process }}</p>
+      </div>
+      <div v-else>
+        <p>No Recipe Process Available</p>
+      </div>
     </el-main>
-
-    <!-- 底部的搜索框 -->
     <el-footer class="bottom-container">
-      <input type="text" class="search-input" placeholder="Search..."/>
-      <button class="search-button">🔍</button>
+      <button @click="fetchChatRecipe">Fetch Chat Recipe</button>
     </el-footer>
   </el-container>
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data() {
+import { useRecipeStore } from '@/stores/recipeStore';
+import { defineComponent, computed,ref } from 'vue';
+
+export default defineComponent({
+  name: 'Mode',
+  setup() {
+    const recipeStore = useRecipeStore();
+    const ingredients = ref(['carrot', 'pork', 'cabbage']); // 示例配料
+
+    const fetchChatRecipe = () => {
+      recipeStore.fetchChatRecipe(ingredients.value);
+    };
+
+    const chatRecipe = computed(() => {
+      return recipeStore.chatRecipes.length > 0 ? recipeStore.chatRecipes[0] : null;
+    });
+
     return {
-      ingredients: ['Tomato', 'Lettuce', 'Cheese'] //可继续增加食材
+      fetchChatRecipe,
+      chatRecipe
     };
   }
-};
+});
 </script>
 
 <style scoped>
 .container {
   display: flex;
-  flex-direction: column; /* 元素垂直排列 */
-  align-items: center; /* 水平居中 */
-  justify-content: space-between; /* 子元素均匀分布在容器内 */
-  height: 100vh; /* 高度为视口高度 */
-  padding: 20px; /* 内边距20px */
-  box-sizing: border-box; /* 包含内边距和边框在内的总宽度和高度计算 */
+  flex-direction: column;
+  /* 元素垂直排列 */
+  align-items: center;
+  /* 水平居中 */
+  justify-content: space-between;
+  /* 子元素均匀分布在容器内 */
+  height: 100vh;
+  /* 高度为视口高度 */
+  padding: 0px;
+  /* 内边距 */
+  box-sizing: border-box;
+  /* 包含内边距和边框在内的总宽度和高度计算 */
+}
+
+.card {
+  width: 300px;
+  padding: 10px;
+  /* 添加内边距以防止文本靠近边框 */
+  border-radius: 30px;
+  background: #f3f0f0;
+  box-shadow: 0px 10px 20px #bebebe, -15px -15px 30px #ffffff;
+  text-align: center;
+  /* 文本居中对齐 */
+  word-wrap: break-word;
+  /* 强制长词换行 */
 }
 
 .top-container {
+  
   display: flex;
-  justify-content: center; /* 水平居中 */
-  flex-wrap: wrap; /* 换行 */
-  gap: 20px; /* 间距为20px */
-  margin-bottom: 20px; /* 底部外边距20px */
-  margin-top: 20px; /* 顶部外边距20px，距离页面顶部20px */
-}
-
-.rect-box {
-  display: flex;
-  align-items: center; /* 元素垂直居中 */
-  justify-content: center; /* 元素水平居中 */
-  width: 100px; /* 宽度100px */
-  height: 50px; /* 高度50px */
-  background-color: #eff1f1; /* 背景颜色为浅灰色 */
-  border: 1px solid #ccc; /* 边框为1px实线灰色 */
-  border-radius: 8px; /* 边框圆角 */
-  text-align: center; /* 文本居中对齐 */
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  flex-wrap: wrap;
+  /* 换行 */
+  gap: 20px;
+  /* 间距为20px */
+  margin-bottom: 20px;
+  /* 底部外边距20px */
+  margin-top: 25px;
+  /* 顶部外边距20px，距离页面顶部20px */
+  width: 100%;
 }
 
 .middle-container {
-  display: flex;
-  flex-direction: column; /* 元素垂直排列 */
-  align-items: center; /* 元素水平居中 */
-  gap: 20px; /* 元素之间的间距为20px */
-  position: absolute; /* 使用绝对定位 */
-  top: 50%; /* 距离顶部50% */
-  left: 50%; /* 距离左侧50% */
-  transform: translate(-50%, -50%); /* 通过平移将元素居中 */
+    flex: 1;
+      /* 使中间部分占据剩余空间 */
+      overflow-y: auto;
+      /* 垂直滚动 */
+      padding: 20px;
+      /* 内边距 */
+      box-sizing: border-box;
+      /* 包含内边距和边框在内的总宽度和高度计算 */
+      width: 100%;
+      /* 宽度100% */
+  /* 通过平移将元素居中 */
 }
 
-.mode-button {
-  width: 200px;
-  padding: 10px; /* 内边距10px */
-  font-size: 16px; /* 字体大小 */
-  color: #000; /* 文字颜色 */
-  background-color: #c7e7fc; /* 背景颜色 */
-  border: 1px solid #ccc; /* 边框为1px实线灰色 */
-  border-radius: 15px; /* 边框圆角 */
-  cursor: pointer; /* 鼠标指针变为手型 */
-  text-align: center; /* 文本居中对齐 */
-}
 
 .bottom-container {
-  display: flex;
-  align-items: center; /* 元素垂直居中 */
-  justify-content: center; /* 元素水平居中 */
-  width: 100%; /* 宽度100% */
-  max-width: 500px; /* 最大宽度500px */
-  margin-top: 20px; /* 顶部外边距20px */
+  position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    /* 添加阴影效果 */
+    left: 0px;
+    /* 向左移动1px，可以根据需要调整距离 */
 }
 
-.search-input {
-  flex-grow: 1; /* 自动扩展宽度 */
-  padding: 10px; /* 内边距10px */
-  font-size: 16px; /* 字体大小16px */
-  border: 1px solid #ccc; /* 边框为1px实线灰色 */
-  border-radius: 5px 0 0 5px; /* 边框圆角 */
-}
 
-.search-button {
-  padding: 10px; /* 内边距10px */
-  font-size: 16px; /* 字体大小 */
-  border: 1px solid #ccc; /* 边框为1px实线灰色 */
-  border-left: none; /* 左边框去掉 */
-  background-color: #c7e7fc; /* 背景颜色为淡蓝色 */
-  color: white; /* 文字颜色为白色 */
-  border-radius: 0 5px 5px 0; /* 边框圆角 */
-  cursor: pointer; /* 鼠标指针变为手型 */
-}
+
 </style>
