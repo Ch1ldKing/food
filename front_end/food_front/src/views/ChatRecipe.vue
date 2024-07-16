@@ -17,6 +17,7 @@
       </div>
     </el-main>
     <el-footer class="bottom-container">
+      <!-- <button class="back-button" @click="goBack">返回</button> -->
       <button @click="fetchChatRecipe">Fetch Chat Recipe</button>
     </el-footer>
   </el-container>
@@ -40,9 +41,14 @@ export default defineComponent({
       return recipeStore.chatRecipes.length > 0 ? recipeStore.chatRecipes[0] : null;
     });
 
+    const goBack = () => {
+      // 实现返回功能，例如使用路由导航返回上一页
+      window.history.back();
+    };
     return {
       fetchChatRecipe,
-      chatRecipe
+      chatRecipe,
+      goBack
     };
   }
 });
@@ -124,6 +130,19 @@ export default defineComponent({
     /* 向左移动1px，可以根据需要调整距离 */
 }
 
+.back-button {
+  margin-left: 10px;
+  background: #f3f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 10px 20px #bebebe, -15px -15px 30px #ffffff;
+}
+
+.back-button:hover {
+  background: #e0dddd;
+}
 
 
 </style>
