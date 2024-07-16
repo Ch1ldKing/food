@@ -2,15 +2,19 @@
     <div>
         <el-container>
             <el-main class="main-content">
-                <div v-if="loading" class="loading-container">
-                    <div class="loading-text">Cooking...</div>
+                <div v-if="!isIngredientsEmpty">
+                    <div class="button-container">
+                        <button v-for="(recipe, index) in recipes.slice(0, 5)" :key="index" class="cute-button">
+                            {{ recipe.recipe }}
+                        </button>
+                        <button @click="navigateToChat" class="cute-button">✨️ Want something new with AI?</button>
+                        <button @click="navigateToSearch" class="cute-button">For all recipes</button>
+                    </div>
                 </div>
-                <div v-else class="button-container">
-                    <button v-for="(recipe, index) in recipes.slice(0, 5)" :key="index" class="cute-button">
-                        {{ recipe.recipe }}
-                    </button>
-                    <button @click="navigateToChat" class="cute-button">✨️ Want something new with AI?</button>
-                    <button @click="navigateToSearch" class="cute-button">For all recipes</button>
+                <div v-else>
+                    <div class="button-container">
+                        <button @click="navigateToSelect" class="cute-button">😋 Add ingredients first</button>
+                    </div>
                 </div>
             </el-main>
         </el-container>
@@ -28,19 +32,13 @@ export default defineComponent({
     setup() {
         const recipeStore = useRecipeStore();
         const foodStore = useFoodStore();
-        const loading = ref(true);
         const router = useRouter();
 
-        const ingredients = computed(() => foodStore.selectedFoods.map(food => food.name));
-        console.log(ingredients.value);
-
         // Fetch recipes when the component is mounted
-        onMounted(async () => {
-            await new Promise(resolve => setTimeout(resolve, 500));
-            await recipeStore.fetchRecipes(ingredients.value); // 示例ingredients
-            loading.value = false; // 数据加载完成后隐藏进度条
-        });
+        
         const { recipes } = toRefs(recipeStore);
+
+        const isIngredientsEmpty = computed(() => foodStore.selectedFoods.length === 0);
 
         // 编程导航到搜索页面
         const navigateToSearch = () => {
@@ -51,30 +49,23 @@ export default defineComponent({
             router.push({ name: 'Chat' });
         };
 
+        const navigateToSelect = () => {
+            router.push({ name: 'FoodPotPage' });
+        };
+
         return {
             recipes,
-            loading,
+            isIngredientsEmpty,
             navigateToSearch,
-            navigateToChat
+            navigateToChat,
+            navigateToSelect
         };
     },
 });
 </script>
 
 <style scoped>
-.loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #000;
-}
 
-.loading-text {
-    font-family: 'Pixel', sans-serif;
-    font-size: 24px;
-    color: #ffffff;
-}
 
 .button-container {
     display: flex;
@@ -86,9 +77,8 @@ export default defineComponent({
 }
 
 .main-content {
-
-    justify-content: center;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     text-align: center;
     left: 0px;
