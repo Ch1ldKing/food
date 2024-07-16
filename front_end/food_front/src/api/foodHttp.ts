@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const foodHttp = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://100.84.158.26:8080",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
