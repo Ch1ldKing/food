@@ -44,6 +44,11 @@ const router = createRouter({
       name:'Menu',
       component: () => import('../views/Menu.vue')
     },
+    {
+      path:'/linked',
+      name:'linked',
+      component: () => import('../views/linked.vue')
+    },
   ]
 })
 

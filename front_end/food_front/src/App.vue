@@ -31,7 +31,9 @@ export default defineComponent({
 
       { path: '/search', name: 'Search' },
 
-      { path:'/menu',name:'Menu'}
+      { path:'/menu',name:'Menu'},
+
+      { path:'/linked',name:'linked'}
 
     ];
 

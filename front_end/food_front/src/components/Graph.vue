@@ -16,16 +16,14 @@ export default {
         { id: 'Garlic Clove' },
         { id: 'Garlic' },
         { id: 'Green Onion' },
-        { id: 'Cilantro' },
-        { id: 'Garlic Powder' }
+        { id: 'Cilantro' }
       ],
       links: [
         { source: 'Herb', target: 'Celery' },
         { source: 'Herb', target: 'Garlic Clove' },
         { source: 'Herb', target: 'Garlic' },
         { source: 'Herb', target: 'Green Onion' },
-        { source: 'Herb', target: 'Cilantro' },
-        { source: 'Herb', target: 'Garlic Powder' }
+        { source: 'Herb', target: 'Cilantro' }
       ]
     };
   },

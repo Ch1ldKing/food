@@ -1,5 +1,7 @@
 <script setup>
 import Pot from '@/components/Pot.vue';
+import Basket from '@/components/Basket.vue';  
+
 import { ref } from 'vue'
 import FoodList from '@/components/FoodList.vue'
 import potImage from '@/assets/food_img/bowl.png'
@@ -78,13 +80,14 @@ const toggleShowAll = (category) => {
 <!--             原有的有show more & less的系统 grain的 -->
         <h3>Grains</h3>
         <FoodList category="grain" @food-selected="handleFoodSelected" />
-
           </div>
         </div>
       </el-main>
       <!--     这个是单独在最底下的锅的容器 -->
       <el-footer class="fixed-footer">
         <Pot />
+        <div class="divider"></div> <!-- 添加分割线 -->
+        <Basket />
       </el-footer>
     </el-container>
   </div>
@@ -94,6 +97,13 @@ const toggleShowAll = (category) => {
 <!-- 下面是全部CSS的代码和注脚 -->
 
 <style>
+
+.divider {
+  width: 1px;
+  height: 100px; /* 根据需要调整高度 */
+  background-color: #ccc; /* 设置分割线颜色 */
+}
+
 .fixed-footer {
   position: fixed;
   bottom: 0;
@@ -104,7 +114,13 @@ const toggleShowAll = (category) => {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   /* 添加阴影效果 */
   left: 0px;
-  /* 向左移动1px，可以根据需要调整距离 */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 70px; /* 设置图片之间的间距 */
+
 }
 
 /* 调整el-main的样式以避免内容被固定的el-footer遮挡 */
@@ -167,6 +183,10 @@ const toggleShowAll = (category) => {
   padding: 10px 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
+
+
+
+
 
 .pot-image-container {
   margin-top: 20px;
