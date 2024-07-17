@@ -86,8 +86,7 @@ const toggleShowAll = (category) => {
       <!--     这个是单独在最底下的锅的容器 -->
       <el-footer class="fixed-footer">
         <Pot />
-        <div class="divider"></div> <!-- 添加分割线 -->
-        <Basket />
+<!--         <Basket /> -->
       </el-footer>
     </el-container>
   </div>
