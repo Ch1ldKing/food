@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import FoodPotPage from '../views/FoodPotPage.vue'
 import testpage from '../views/Test.vue'
 import Cooking from '../views/Cooking.vue'
+import linked from '@/views/linked.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
