@@ -4,7 +4,7 @@
             <el-main class="main-content">
                 <div v-if="!isIngredientsEmpty">
                     <div class="button-container">
-                        <button v-for="(recipe, index) in recipes.slice(0, 5)" :key="index" class="cute-button">
+                        <button v-for="(recipe, index) in recipes.slice(0, 5)" :key="index" class="cute-button" @click="navigateToMenu(recipe.id)">
                             {{ recipe.recipe }}
                         </button>
                         <button @click="navigateToChat" class="cute-button">✨️ Want something new with AI?</button>
@@ -53,12 +53,18 @@ export default defineComponent({
             router.push({ name: 'FoodPotPage' });
         };
 
+        const navigateToMenu = (id: number) => {
+            console.log(id);
+            router.push({ name: 'Menu' , params: { id } });
+        };
+
         return {
             recipes,
             isIngredientsEmpty,
             navigateToSearch,
             navigateToChat,
-            navigateToSelect
+            navigateToSelect,
+            navigateToMenu,
         };
     },
 });

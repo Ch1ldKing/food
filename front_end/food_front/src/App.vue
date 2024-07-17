@@ -31,7 +31,7 @@ export default defineComponent({
 
       { path: '/search', name: 'Search' },
 
-      { path:'/menu',name:'menu'}
+      { path:'/menu',name:'Menu'}
 
     ];
 
@@ -110,6 +110,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 .app {
   height: 100vh;
   overflow: hidden;
@@ -130,13 +131,13 @@ export default defineComponent({
     /* 缩小点的大小 */
     height: 8px;
     /* 缩小点的大小 */
-    background: lightgreen;
+    background: rgb(88, 187, 229);
     /* 浅绿色背景 */
     border-radius: 50%;
 }
 
 .dots span.active {
-  background: black;
+  background: rgb(11, 69, 127);
 }
 
 /* 过渡效果定义 */

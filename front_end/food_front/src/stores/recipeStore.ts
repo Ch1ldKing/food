@@ -5,7 +5,9 @@ import recipeService from '@/api/recipeService';
 export const useRecipeStore = defineStore('recipeStore', {
   state: () => ({
     recipes: [] as Array<{ id: number, recipe: string, ingredients: string, comment: number, url: string,}>,
-    chatRecipes: [] as Array<{ dishName:string, process:string }> 
+    chatRecipes: [] as Array<{ dishName:string, process:string }>,
+    menuRecipes: [] as Array<{ id: number, recipe: string, ingredients: string, comment: number, url: string,}>,
+    selectedRecipe: {} as { id: number, recipe: string, ingredients: string, comment: number, url: string, },
   }),
   actions: {
     async fetchRecipes(ingredients) {
@@ -29,5 +31,15 @@ export const useRecipeStore = defineStore('recipeStore', {
         console.error('Failed to fetch chat recipe:', error);
       }
     },
+    async fetchMenuRecipesById(id: number) { 
+      try {
+        const data = await recipeService.getMenuRecipesById(id);
+        this.menuRecipes = data;
+        console.log(this.menuRecipes);
+      } catch (error) {
+        console.error(`Failed to fetch recipe with id ${id}:`, error);
+      }
+    },
+
   },
 });

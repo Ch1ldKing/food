@@ -18,11 +18,11 @@
     <div class="vertical-container">
       <button
         class="item"
-        v-for="(recipe, index) in recipes"
+        v-for="(recipe, index) in menuRecipes"
         :key="index"
-        @click="goToRecipe(recipe.link)"
+        @click="goToRecipe(recipe.url)"
       >
-        <span>{{ recipe.name }}</span>
+        <span>{{ recipe.recipe }}</span>
       </button>
     </div>
     <div class="footer">
@@ -33,29 +33,51 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, ref, onMounted, toRefs } from 'vue';
+import { useRoute } from 'vue-router';
+import { useRecipeStore } from '@/stores/recipeStore';
+
+export default defineComponent({
   name: "Menu",
-  data() {
-    return {
-      recipes: [
-        { name: "Bourbon Chicken", link: "https://www.food.com/recipe/bourbon-chicken-45809" },
-        { name: "Best Banana Bread", link: "https://www.food.com/recipe/best-banana-bread-2886" },
-        { name: "Crock-Pot Chicken With Black Beans & Cream Cheese", link: "https://www.food.com/recipe/crock-pot-chicken-with-black-beans-cream-cheese-89204" },
-        { name: "Creamy Cajun Chicken Pasta", link: "https://www.food.com/recipe/creamy-cajun-chicken-pasta-39087" },
-        { name: "Best Ever Banana Cake With Cream Cheese Frosting", link: "https://www.food.com/recipe/best-ever-banana-cake-with-cream-cheese-frosting-67256" }
-      ],
-    };
-  },
-  methods: {
-    goToRecipe(link) {
+  setup() {
+    const route = useRoute();
+    const recipeId = ref(route.params.id);
+    const recipeStore = useRecipeStore();
+
+    // const recipes = ref([
+    //   { name: "Bourbon Chicken", link: "https://www.food.com/recipe/bourbon-chicken-45809" },
+    //   { name: "Best Banana Bread", link: "https://www.food.com/recipe/best-banana-bread-2886" },
+    //   { name: "Crock-Pot Chicken With Black Beans & Cream Cheese", link: "https://www.food.com/recipe/crock-pot-chicken-with-black-beans-cream-cheese-89204" },
+    //   { name: "Creamy Cajun Chicken Pasta", link: "https://www.food.com/recipe/creamy-cajun-chicken-pasta-39087" },
+    //   { name: "Best Ever Banana Cake With Cream Cheese Frosting", link: "https://www.food.com/recipe/best-ever-banana-cake-with-cream-cheese-frosting-67256" }
+    // ]);
+    onMounted(async () => {
+      console.log(recipeId.value);
+      await recipeStore.fetchMenuRecipesById(recipeId.value);
+      
+    });
+
+    const { menuRecipes } = toRefs(recipeStore);
+    // const recipes = recipeStore.menuRecipes;
+    
+
+    const goToRecipe = (link: string) => {
       window.location.href = link;
-    },
-    goBack() {
+    };
+
+    const goBack = () => {
       window.history.back();
-    }
-  },
-};
+    };
+
+    return {
+      menuRecipes,
+      recipeId,
+      goToRecipe,
+      goBack,
+    };
+  }
+});
 </script>
 
 <style scoped>

@@ -40,8 +40,8 @@ const router = createRouter({
       component: () => import('../views/ChatRecipe.vue')
     },
     {
-      path:'/menu',
-      name:'menu',
+      path:'/menu:id',
+      name:'Menu',
       component: () => import('../views/Menu.vue')
     },
   ]

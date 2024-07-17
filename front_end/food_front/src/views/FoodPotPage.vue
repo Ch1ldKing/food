@@ -37,10 +37,12 @@ const toggleShowAll = (category) => {
   <div class="food-pot-page">
     <!--   这两个是子菜单的容器 -->
     <el-container>
+      <el-header>
+        <h2 class="head">🥰 Choose Ingredients 🥰</h2>
+      </el-header>
       <el-main class="main-content">
         <div class="scroll-container">
           <div class="container">
-            <h2>Choose your ingredients</h2>
 
             <row :gutter="20">
               <col :span="24">
@@ -127,6 +129,7 @@ const toggleShowAll = (category) => {
 }
 
 .container {
+
   flex: 1; /* 允许容器在主轴方向上伸展 */
   width: 80%;
   max-width: 1200px;
@@ -145,7 +148,10 @@ const toggleShowAll = (category) => {
     padding-bottom: 100px; /* 增加底部填充，以确保在移动端显示最底部内容 */
   }
 }
-
+.head {
+  text-align: center;
+  margin-top: 30px;
+}
 
 .preference-box {
   padding: 20px;
