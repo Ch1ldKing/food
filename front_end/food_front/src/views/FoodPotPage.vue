@@ -86,7 +86,7 @@ const toggleShowAll = (category) => {
       <!--     这个是单独在最底下的锅的容器 -->
       <el-footer class="fixed-footer">
         <Pot />
-<!--         <Basket /> -->
+        <Basket />
       </el-footer>
     </el-container>
   </div>
@@ -115,10 +115,11 @@ const toggleShowAll = (category) => {
   left: 0px;
   
   display: flex;
+  flex-direction: column; /* 设置为上下排列 */
   justify-content: center;
   align-items: center;
 
-  gap: 70px; /* 设置图片之间的间距 */
+  gap: 0px; /* 设置图片之间的间距 */
 
 }
 
