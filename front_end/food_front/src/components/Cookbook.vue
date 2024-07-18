@@ -89,7 +89,7 @@ export default defineComponent({
     left: 0px;
     overflow-y: auto; /* 添加滚动 */
     height: calc(100vh - 100px); /* 适应视口高度 */
-    padding-bottom: 300px; /* 确保主内容在底部有足够的空间 */
+    padding-bottom: 60%; /* 确保主内容在底部有足够的空间 */
 }
 
 .cute-button {

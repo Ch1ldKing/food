@@ -46,6 +46,8 @@ export default defineComponent({
         const loading = ref(true);
         const ingredients = computed(() => foodStore.selectedFoods.map(food => food.name)); 
 
+        const MAX_LOADING_TIME = 5000; // 最大加载时间5秒
+
         onMounted(async () => {
             await new Promise(resolve => setTimeout(resolve, 1200));
             await recipeStore.fetchRecipes(ingredients.value); // 示例ingredients

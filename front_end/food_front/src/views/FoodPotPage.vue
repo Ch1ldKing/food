@@ -38,48 +38,50 @@ const toggleShowAll = (category) => {
     <!--   这两个是子菜单的容器 -->
     <el-container>
       <el-header>
-        <h2 class="head">🥰 Choose Ingredients 🥰</h2>
+        <h2 class="h2head">🥰 Choose Ingredients 🥰</h2>
       </el-header>
       <el-main class="main-content">
-        <div class="scroll-container">
-          <div class="container">
 
-            <row :gutter="20">
-              <col :span="24">
-              <card class="preference-box" shadow="always">
-                <h3 slot="header">Vegetables & Fruits</h3>
-                <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
-                <div v-show="!showAllVegetables">
-                  <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />
-                </div>
-                <button type="primary" @click="toggleShowAll('vegetables')">
-                  {{ showAllVegetables ? 'Show Less' : 'Show More' }}
-                </button>
-              </card>
-              </col>
-            </row>
+        <div class="container">
 
-            <row :gutter="20">
-              <col :span="24">
-              <card class="preference-box" shadow="always">
-                <h3 slot="header">Meat</h3>
-                <FoodList category="meat" @food-selected="handleFoodSelected" v-show="showAllMeats" />
-                <div v-show="!showAllMeats">
-                  <FoodList category="meat" @food-selected="handleFoodSelected" :max-items="3" />
-                </div>
-                <button type="primary" @click="toggleShowAll('meats')">
-                  {{ showAllMeats ? 'Show Less' : 'Show More' }}
-                </button>
-              </card>
-              </col>
-            </row>
+          <row :gutter="20">
+            <col :span="24">
+            <card class="preference-box" shadow="always">
+
+              <h3 class="h3head">🥬 Vegetables 🥬</h3>
+
+              <FoodList category="vegetable" @food-selected="handleFoodSelected" v-show="showAllVegetables" />
+              <div v-show="!showAllVegetables">
+                <FoodList category="vegetable" @food-selected="handleFoodSelected" :max-items="3" />
+              </div>
+              <button type="primary" @click="toggleShowAll('vegetables')">
+                {{ showAllVegetables ? 'Show Less' : 'Show More' }}
+              </button>
+            </card>
+            </col>
+          </row>
+
+          <row :gutter="20">
+            <col :span="24">
+            <card class="preference-box" shadow="always">
+              <h3 class="h3head">🥩 Meats 🥩</h3>
+              <FoodList category="meat" @food-selected="handleFoodSelected" v-show="showAllMeats" />
+              <div v-show="!showAllMeats">
+                <FoodList category="meat" @food-selected="handleFoodSelected" :max-items="3" />
+              </div>
+              <button type="primary" @click="toggleShowAll('meats')">
+                {{ showAllMeats ? 'Show Less' : 'Show More' }}
+              </button>
+            </card>
+            </col>
+          </row>
 
 
-<!--             原有的有show more & less的系统 grain的 -->
-        <h3>Grains</h3>
-        <FoodList category="grain" @food-selected="handleFoodSelected" />
-          </div>
+          <!--             原有的有show more & less的系统 grain的 -->
+          <h3 class="h3head">🌾 Grains 🌾</h3>
+          <FoodList category="grain" @food-selected="handleFoodSelected" />
         </div>
+
       </el-main>
       <!--     这个是单独在最底下的锅的容器 -->
       <el-footer class="fixed-footer">
@@ -123,8 +125,17 @@ const toggleShowAll = (category) => {
 
 /* 调整el-main的样式以避免内容被固定的el-footer遮挡 */
 .main-content {
-  padding-bottom: 60px;
-  /* 确保主内容在底部有足够的空间 */
+    display: flex;
+      flex-direction: column;
+      
+      left: 0px;
+      overflow-y: auto;
+      /* 添加滚动 */
+      height: calc(100vh - 100px);
+      /* 适应视口高度 */
+      padding-bottom: 60%;
+      /* 确保主内容在底部有足够的空间 */
+      /* 确保主内容在底部有足够的空间 */
 }
 
 .food-pot-page {
@@ -162,9 +173,14 @@ const toggleShowAll = (category) => {
     padding-bottom: 100px; /* 增加底部填充，以确保在移动端显示最底部内容 */
   }
 }
-.head {
+.h2head {
   text-align: center;
   margin-top: 30px;
+}
+
+.h3head{
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .preference-box {

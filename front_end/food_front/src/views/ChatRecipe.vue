@@ -17,7 +17,7 @@
       </div>
     </el-main>
     <el-footer class="bottom-container">
-      <!-- <button class="back-button" @click="goBack">返回</button> -->
+      <!--   -->
       <button @click="fetchChatRecipe">Fetch Chat Recipe</button>
     </el-footer>
   </el-container>

@@ -7,7 +7,8 @@
       <span v-for="(route, index) in routes" :key="index" :class="{ active: currentIndex === index }"></span>
     </div>
     <button class="home-button" @click="navigateHome">
-      <img src="@/assets/home.png" alt="Home" />
+      <img src="@/assets/home2.png" alt="Home" />
+       
     </button>
   </div>
 </template>
@@ -21,7 +22,9 @@ export default defineComponent({
     const router = useRouter();
     const route = useRoute();
     const touchStartX = ref(0);
+    const touchStartY = ref(0);
     const touchEndX = ref(0);
+    const touchEndY = ref(0);
     const touchStartTime = ref(0);
     const currentIndex = ref(0);
     const transitionName = ref('fade'); // 动态过渡名称
@@ -49,21 +52,26 @@ export default defineComponent({
 
     const onTouchStart = function (event: TouchEvent) {
       touchStartX.value = event.touches[0].clientX;
+      touchStartY.value = event.touches[0].clientY;
       touchEndX.value = event.touches[0].clientX;
+      touchEndY.value = event.touches[0].clientY;
       touchStartTime.value = Date.now();
     };
 
     const onTouchMove = function (event: TouchEvent) {
       touchEndX.value = event.touches[0].clientX;
+      touchEndY.value = event.touches[0].clientY;
     };
 
     const onTouchEnd = function () {
-      const distance = touchEndX.value - touchStartX.value;
-      console.log(distance);
+      const distanceX = touchEndX.value - touchStartX.value;
+      const distanceY = touchEndY.value - touchStartY.value;
+      console.log(distanceX);
+      console.log(distanceY);
       const timeElapsed = Date.now() - touchStartTime.value;
 
-      if (Math.abs(distance) > 130 && timeElapsed < 500) {
-        if (distance > 0) {
+      if (Math.abs(distanceX) > 70 && timeElapsed < 500 && Math.abs(distanceX) > Math.abs(distanceY)) {
+        if (distanceX > 0) {
           transitionName.value = 'fade'; // 从右入镜
           prevPage();
         } else {
@@ -75,6 +83,8 @@ export default defineComponent({
       touchStartX.value = 0;
       touchEndX.value = 0;
       touchStartTime.value = 0;
+      touchStartY.value = 0;
+      touchEndY.value = 0;
     };
 
     const nextPage = function () {

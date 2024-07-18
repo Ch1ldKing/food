@@ -12,26 +12,27 @@
                 :id="'button' + (index + 1)" 
                 :name="'button' + (index + 1)" 
                 class="recipe-button">
-          {{ recipe }}
+          {{ recipe.recipe }}
         </button>
       </div>
     </div>
 </template>
   
-<script>
-export default {
-name: 'RecipeSearch',
-data() {
-    return {
-    recipes: [
-        'Spaghetti Carbonara', 'Chicken Alfredo', 'Beef Stroganoff', 'Caesar Salad', 'Lemon Garlic Shrimp',
-        'Baked Salmon', 'Tomato Basil Soup', 'Chicken Parmesan', 'Garlic Butter Steak', 'Pesto Pasta',
-        'Fish Tacos', 'Mushroom Risotto', 'Greek Salad', 'Pad Thai', 'Beef Tacos',
-        'Chicken Stir Fry', 'Vegetable Curry', 'Shrimp Scampi', 'Tiramisu', 'Cheesecake'
-    ]
-    };
-}
-};
+<script lang="'ts">
+import {useRecipeStore} from '@/stores/recipeStore';
+import {toRefs, defineComponent, onMounted} from 'vue';
+
+export default defineComponent({
+    name: 'Search',
+    setup() {
+        const recipeStore = useRecipeStore();
+        const {recipes} = toRefs(recipeStore);
+        return {
+            recipes
+        };
+    },
+});
+
 </script>
 
 <style scoped>
