@@ -2,6 +2,7 @@
   <el-container>
     <el-header>
       <h2 class="h2head">😉 Buy these ingredients 😉</h2>
+      <p class="middle-text">recipes better with these!</p>
     </el-header>
     <el-main>
       <div class="linked-page">
@@ -205,5 +206,11 @@ const handleClick = (index) => {
     0px 12px 10px -10px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
   transform: translateY(0.5em);
+}
+
+.middle-text {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: -10px;
 }
 </style>

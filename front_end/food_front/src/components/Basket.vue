@@ -1,8 +1,8 @@
 <template>
-    <div class="basket-container" @click="goToLastPage">
-      <p class="basket-text">Basket</p>
-    </div>
-  </template>
+  <div class="basket-container" @click="goToLastPage">
+    <p class="basket-text">buy&nbsp;some&nbsp;ingredients?</p>
+  </div>
+</template>
   
   <script setup>
   import { useRouter } from 'vue-router';

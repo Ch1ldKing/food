@@ -13,7 +13,8 @@
   </div>-->
   <template>
     <div class="pot">
-      <img :src="potImage" alt="Pot Image" class="pot-image" />
+      <img v-if="selectedFoods.length === 0" :src="potImage" alt="Pot Image" class="pot-image" />
+      <img v-else :src="fullpotImage" alt="Full Pot Image" class="full-pot-image" />
       <div v-for="food in potFoods" :key="food.id" class="food-in-pot">
         {{ food.name }}
       </div>
@@ -35,19 +36,22 @@
   </script> -->
 
   <script lang="ts" setup>
-  import { ref, watch } from 'vue';
+  import { ref, watch, toRefs } from 'vue';
   import { useFoodStore } from '@/stores/foodStore';
-  import potImage from '@/assets/food_img/bowl.png'
+  import potImage from '@/assets/food_img/bowl.png';
+  import fullpotImage from '@/assets/food_img/Rabbit_Stew_JE3_BE2.png';
+
   import basketImage from '@/assets/food_img/basket.png'
 
   const foodStore = useFoodStore();
   const potFoods = ref([]);
+  const { selectedFoods } = toRefs(foodStore);
 
 
   // Watch for changes in active foods
   watch(() => foodStore.foods, (newFoods) => {
     potFoods.value = newFoods.filter(food => food.active);
-  });
+  },{immediate: true});
   </script>
 
   <style scoped>
@@ -58,6 +62,14 @@
   .pot-image {
     width: 100px;
     height: 100px;
+    position: relative;
+  }
+
+  .full-pot-image {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: -6px;
   }
 
   .food-in-pot {

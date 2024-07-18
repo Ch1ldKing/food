@@ -39,6 +39,7 @@ const toggleShowAll = (category) => {
     <el-container>
       <el-header>
         <h2 class="h2head">🥰 Choose Ingredients 🥰</h2>
+        <p class="middle-text">then swipe left</p>
       </el-header>
       <el-main class="main-content">
 
@@ -181,6 +182,12 @@ const toggleShowAll = (category) => {
 .h3head{
   text-align: center;
   margin-bottom: 10px;
+}
+
+.middle-text{
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: -8px;
 }
 
 .preference-box {
