@@ -14,10 +14,7 @@
           <div class="blob"></div>
           <div class="card-content" >
           <div v-html="chatRecipe.process"></div>
-          
           </div>
-          
-            <!-- <p>{{ chatRecipe.process }}</p> -->
         </div>
       </div>
       <div v-else>
@@ -121,8 +118,8 @@ export default defineComponent({
   z-index: 1;
   top: 50%;
   left: 50%;
-  width: 150px;
-  height: 150px;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
   background-color: #ff0000;
   opacity: 1;
@@ -140,6 +137,11 @@ export default defineComponent({
   overflow-y: auto; /* 添加滚动条 */
   max-height: calc(100% - 40px); /* 适应card的高度 */
 }
+
+.card-content::-webkit-scrollbar {
+  width: 12px; /* 滚动条的宽度 */
+}
+
 
 @keyframes blob-bounce {
   0% {
