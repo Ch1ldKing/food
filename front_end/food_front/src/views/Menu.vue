@@ -85,6 +85,8 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto; /* 添加滚动 */
+  height: calc(100vh - 100px); /* 适应视口高度 */
 }
 
 .header {
