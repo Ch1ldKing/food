@@ -59,9 +59,10 @@ export default defineComponent({
 
     const onTouchEnd = function () {
       const distance = touchEndX.value - touchStartX.value;
+      console.log(distance);
       const timeElapsed = Date.now() - touchStartTime.value;
 
-      if (Math.abs(distance) > 50 && timeElapsed < 500) {
+      if (Math.abs(distance) > 130 && timeElapsed < 500) {
         if (distance > 0) {
           transitionName.value = 'fade'; // 从右入镜
           prevPage();

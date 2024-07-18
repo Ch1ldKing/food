@@ -139,7 +139,7 @@ const toggleShowAll = (category) => {
   flex: 1; /* 允许容器在主轴方向上伸展 */
   overflow-y: auto; /* 垂直滚动 */
   width: 100%; /* 占满宽度 */
-  padding-bottom: 100px; /* 为Pot组件腾出足够的空间，确保滚动到最底部 */
+  padding-bottom: 200px; /* 为Pot组件腾出足够的空间，确保滚动到最底部 */
 }
 
 .container {
