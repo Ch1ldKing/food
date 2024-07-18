@@ -33,23 +33,31 @@
   </el-container>
 </template>
 
-<script>
+<script lang="'ts">
 import { useRecipeStore } from '@/stores/recipeStore';
-import { defineComponent, computed, ref } from 'vue';
+import { useFoodStore } from '@/stores/foodStore';
+import { defineComponent, computed, ref, toRefs } from 'vue';
 
 export default defineComponent({
   name: 'Chat',
   setup() {
+    const foodStore = useFoodStore();
     const recipeStore = useRecipeStore();
-    const ingredients = ref(['carrot', 'pork', 'cabbage']); // 示例配料
+    const { selectedFoods } = toRefs(foodStore); // 示例配料
 
     const fetchChatRecipe = () => {
-      recipeStore.fetchChatRecipe(ingredients.value);
+      const ingredientNames = selectedFoods.value.map(food => food.name);
+      recipeStore.fetchChatRecipe(ingredientNames);
     };
 
     const chatRecipe = computed(() => {
       return recipeStore.chatRecipes.length > 0 ? recipeStore.chatRecipes[0] : null;
     });
+
+    const goBack = () => {
+      // 实现返回功能，例如使用路由导航返回上一页
+      window.history.back();
+    };
 
     return {
       fetchChatRecipe,

@@ -19,6 +19,14 @@ export const useFoodStore = defineStore('food', {
           active: false, // 添加 active 属性并初始化为 false
           _isToggling: false // 初始化 _isToggling 为 false
         }));
+
+        // 恢复选中状态
+        this.selectedFoods.forEach(selectedFood => {
+          const food = this.foods.find(f => f.id === selectedFood.id);
+          if (food) {
+            food.active = true;
+          }
+        });
       } catch (error) {
         console.error('Failed to fetch foods:', error);
       }
