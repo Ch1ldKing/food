@@ -1,7 +1,7 @@
 <template>
   <div class="menu-container">
     <div class="header">
-      <button class="button" @click="goToRecipe('https://www.food.com/recipe/bourbon-chicken-45809')">
+      <button class="button" @click="goToRecipe(firstRecipeUrl)">
         Click To Jump
         <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
           <path
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, toRefs } from 'vue';
+import { defineComponent, ref, onMounted, toRefs, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useRecipeStore } from '@/stores/recipeStore';
 
@@ -61,6 +61,9 @@ export default defineComponent({
     const { menuRecipes } = toRefs(recipeStore);
     // const recipes = recipeStore.menuRecipes;
     
+    const firstRecipeUrl = computed(() => {
+      return menuRecipes.value.length > 0 ? menuRecipes.value[0].url : '#';
+    });
 
     const goToRecipe = (link: string) => {
       window.location.href = link;
@@ -75,6 +78,7 @@ export default defineComponent({
       recipeId,
       goToRecipe,
       goBack,
+      firstRecipeUrl
     };
   }
 });
