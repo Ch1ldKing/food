@@ -18,5 +18,17 @@ export default {
           throw error;
         });
     }
+  },
+  // 获取关联食材
+  getLinkedIngredients(payload) {
+    return foodHttp.post('/recipes/associate', payload) // 替换为你的API端点
+      .then(response => {
+        console.log(response.data); // 打印获取的数据
+        return response;
+      })
+      .catch(error => {
+        console.error('Error fetching linked ingredients:', error); // 打印错误信息
+        throw error;
+      });
   }
 }

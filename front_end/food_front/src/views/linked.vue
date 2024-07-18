@@ -1,13 +1,7 @@
 <template>
   <div class="linked-page">
-    <div 
-      class="bubble" 
-      v-for="(food, index) in foods" 
-      :key="index"
-      :style="{ animationDelay: `${index * 0.5}s` }"
-      @click="handleClick(index)"
-      :class="{ active: activeIndex === index }"
-    >
+    <div class="bubble" v-for="(food, index) in foods" :key="index" :style="{ animationDelay: `${index * 0.5}s` }"
+      @click="handleClick(index)" :class="{ active: activeIndex === index }">
       <div class="bubble-content">
         <img :src="food.image" :alt="food.name" />
         <p>{{ food.name }}</p>
@@ -19,10 +13,46 @@
 
 <!-- code  -->
 <script setup>
-import { ref } from 'vue';
+import { ref, toRefs, onMounted } from 'vue';
+import { useFoodStore } from '@/stores/foodStore';
+
+const foodStore = useFoodStore();
+const { selectedFoods } = toRefs(foodStore);
 
 // 设定需要展示的关键词,在这里改数组
-const displayKeywords = ['shrimp', 'scallops', 'asparagus','apple','rice'];
+const ingredients = selectedFoods.value.map(food => food.name);
+const displayKeywords = []; // 普通字符串数组
+
+// 定义 ingredients
+const ingredient1 = selectedFoods.value[0].name;
+const ingredient2 = selectedFoods.value[1].name || null;
+
+const fetchAndSetLinkedIngredients = async () => {
+  await foodStore.fetchLinkedIngredients(ingredient1, ingredient2);
+  // 使用普通数组方法更新 displayKeywords
+  displayKeywords.push(...foodStore.linkedIngredients);
+
+  // 动态生成foods数组，仅包含需要展示的关键词
+  foods.value = displayKeywords.map(keyword => ({
+    name: keyword,
+    image: null
+  }));
+
+  // 加载图片
+  Promise.all(
+    foods.value.map(food =>
+      keywordToImageMap[normalizeKeyword(food.name)]().then(module => {
+        food.image = module.default;
+      })
+    )
+  ).catch(error => {
+    console.error('Error loading images:', error);
+  });
+};
+
+onMounted(() => {
+  fetchAndSetLinkedIngredients();
+});
 
 // 映射对象，将标准化后的关键词和图片路径绑定
 const keywordToImageMap = {
@@ -79,23 +109,9 @@ const keywordToImageMap = {
 const normalizeKeyword = (keyword) => keyword.toLowerCase();
 
 // 动态生成foods数组，仅包含需要展示的关键词
-const foods = ref(
-  displayKeywords.map(keyword => ({
-    name: keyword,
-    image: null
-  }))
-);
+const foods = ref([]);
 
-// 加载图片
-Promise.all(
-  foods.value.map(food =>
-    keywordToImageMap[normalizeKeyword(food.name)]().then(module => {
-      food.image = module.default;
-    })
-  )
-).catch(error => {
-  console.error('Error loading images:', error);
-});
+// 初始化 foods 数组和加载图片在 fetchAndSetLinkedIngredients 中完成
 
 const activeIndex = ref(null);
 
@@ -113,10 +129,14 @@ const handleClick = (index) => {
 .linked-page {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* 居中对齐 */
-  align-items: center; /* 垂直居中 */
-  gap: 20px; /* 项目之间的间距 */
-  margin-top: 100px; /* 顶部边距 */
+  justify-content: center;
+  /* 居中对齐 */
+  align-items: center;
+  /* 垂直居中 */
+  gap: 20px;
+  /* 项目之间的间距 */
+  margin-top: 100px;
+  /* 顶部边距 */
 }
 
 /* 每个气泡的样式 */
@@ -126,9 +146,9 @@ const handleClick = (index) => {
   background: #e3edf7;
   padding: 1.4em;
   border-radius: 10px;
-  box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
-              -6px -6px 10px -1px rgba(255,255,255,0.7);
-  border: 1px solid rgba(0,0,0,0);
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0);
   cursor: pointer;
   transition: transform 0.5s;
 }
@@ -140,9 +160,11 @@ const handleClick = (index) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #039be5; /* 设置文字颜色为蓝色 */
+  color: #039be5;
+  /* 设置文字颜色为蓝色 */
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-  font-weight: 700; /* 设置文字加粗 */
+  font-weight: 700;
+  /* 设置文字加粗 */
 
 }
 
@@ -158,24 +180,12 @@ const handleClick = (index) => {
 .bubble.active {
   transform: scale(1.1);
 
-  box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
-	      inset -4px -4px 6px -1px rgba(255,255,255,0.7),
-	      -0.5px -0.5px 0px rgba(255,255,255,1),
-	      0.5px 0.5px 0px rgba(0,0,0,0.15),
-	      0px 12px 10px -10px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+    0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   transform: translateY(0.5em);
 }
 </style>
-
-
-
-
-
-
-
-
-
-  
-
-  

@@ -6,7 +6,8 @@ export const useFoodStore = defineStore('food', {
 
   state: () => ({
     foods: [] as Array<{ id: number, name: string, category: string, active: boolean, _isToggling: boolean }>,
-    selectedFoods: [] as Array<{ id: number, name: string, category: string }> //用于存储选中的食材
+    selectedFoods: [] as Array<{ id: number, name: string, category: string }>, //用于存储选中的食材,
+    linkedIngredients: [] as Array<string> 
   }),
 
 
@@ -55,7 +56,20 @@ export const useFoodStore = defineStore('food', {
     removeFoodFromSelected(food) {
       this.selectedFoods = this.selectedFoods.filter(f=>f.id !== food.id);
       
+    },
+    
+    //关联食材
+    async fetchLinkedIngredients(ingredient1: string, ingredient2: string) {
+      try {
+        const response = await foodService.getLinkedIngredients({ ingredient1, ingredient2 });
+        this.linkedIngredients = response.data;
+        console.log('linkedIngredients:', this.linkedIngredients);
+      } catch (error) {
+        console.error('Failed to fetch linked ingredients:', error);
+      }
     }
+
+
     
   },
 
