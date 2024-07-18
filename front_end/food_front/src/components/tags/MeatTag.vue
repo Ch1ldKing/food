@@ -41,6 +41,8 @@
     import CodImage from '@/assets/food_img/Tuna.png';
     import EggImage from '@/assets/food_img/egg.png';
     import MilkImage from '@/assets/food_img/Milk.png';
+
+    
     
   const props = defineProps<{
     active: boolean,

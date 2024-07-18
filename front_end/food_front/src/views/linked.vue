@@ -8,24 +8,98 @@
       @click="handleClick(index)"
       :class="{ active: activeIndex === index }"
     >
-      <p>{{ food }}</p>
+      <div class="bubble-content">
+        <img :src="food.image" :alt="food.name" />
+        <p>{{ food.name }}</p>
+      </div>
     </div>
   </div>
 </template>
 
+
+<!-- code  -->
 <script setup>
 import { ref } from 'vue';
 
-const foods = ref([
-  'Tomato',
-  'Carrot',
-  'Broccoli',
-  'Chicken',
-  'Rice'
-]);
+// 设定需要展示的关键词,在这里改数组
+const displayKeywords = ['shrimp', 'scallops', 'asparagus','apple','rice'];
+
+// 映射对象，将标准化后的关键词和图片路径绑定
+const keywordToImageMap = {
+  tomato: () => import('@/assets/food_img/tomato.webp'),
+  potato: () => import('@/assets/food_img/potato.png'),
+  rice: () => import('@/assets/food_img/rice.png'),
+  wheat: () => import('@/assets/food_img/Wheat.png'),
+  quinoa: () => import('@/assets/food_img/Quinoa.png'),
+  oat: () => import('@/assets/food_img/Oat.png'),
+  noodles: () => import('@/assets/food_img/Noodles.png'),
+  /* 肉类 */
+  chicken: () => import('@/assets/food_img/Chicken.png'),
+  beef: () => import('@/assets/food_img/beef.png'),
+  pork: () => import('@/assets/food_img/Raw_Porkchop.png'),
+  lamb: () => import('@/assets/food_img/Goat.png'),
+  turkey: () => import('@/assets/food_img/Golden_Chicken.png'),
+  bacon: () => import('@/assets/food_img/bacon.webp'),
+  sausage: () => import('@/assets/food_img/Bread.png'),
+  salmon: () => import('@/assets/food_img/Salmon.png'),
+  shrimp: () => import('@/assets/food_img/Shrimp.png'),
+  crab: () => import('@/assets/food_img/Crab.png'),
+  scallops: () => import('@/assets/food_img/Clam.png'),
+  cod: () => import('@/assets/food_img/Tuna.png'),
+  egg: () => import('@/assets/food_img/egg.png'),
+  milk: () => import('@/assets/food_img/Milk.png'),
+  /*   菜和水果 */
+  carrot: () => import('@/assets/food_img/carrot.png'),
+  onion: () => import('@/assets/food_img/Garlic.png'),
+  pepper: () => import('@/assets/food_img/Cave_Carrot.png'),
+  cucumber: () => import('@/assets/food_img/Salad.png'),
+  eggplant: () => import('@/assets/food_img/Eggplant.png'),
+  zucchini: () => import('@/assets/food_img/Leek.png'),
+  lettuce: () => import('@/assets/food_img/Kale.png'),
+  sweetpotato: () => import('@/assets/food_img/SPotato.png'),
+  sprouts: () => import('@/assets/food_img/Artichoke.png'),
+  cauliflower: () => import('@/assets/food_img/Cauliflower.png'),
+  broccoli: () => import('@/assets/food_img/Fiddlehead_Fern.png'),
+  cabbage: () => import('@/assets/food_img/Bok_Choy.png'),
+  corn: () => import('@/assets/food_img/Corn.png'),
+  pea: () => import('@/assets/food_img/Green_Bean.png'),
+  mushrooms: () => import('@/assets/food_img/Mushroom.png'),
+  pumpkin: () => import('@/assets/food_img/Pumpkin.png'),
+  asparagus: () => import('@/assets/food_img/Wild_Horseradish.png'),
+  tofu: () => import('@/assets/food_img/Cheese.png'),
+  apple: () => import('@/assets/food_img/Apple.webp'),
+  lemon: () => import('@/assets/food_img/Lemon.webp'),
+  orange: () => import('@/assets/food_img/Blood_Orange.webp'),
+  banana: () => import('@/assets/food_img/Banana.webp'),
+  pineapple: () => import('@/assets/food_img/Pineapple.webp'),
+  berries: () => import('@/assets/food_img/Blackberry.png'),
+};
+
+// 函数将关键词标准化为小写
+const normalizeKeyword = (keyword) => keyword.toLowerCase();
+
+// 动态生成foods数组，仅包含需要展示的关键词
+const foods = ref(
+  displayKeywords.map(keyword => ({
+    name: keyword,
+    image: null
+  }))
+);
+
+// 加载图片
+Promise.all(
+  foods.value.map(food =>
+    keywordToImageMap[normalizeKeyword(food.name)]().then(module => {
+      food.image = module.default;
+    })
+  )
+).catch(error => {
+  console.error('Error loading images:', error);
+});
 
 const activeIndex = ref(null);
 
+// 处理点击事件
 const handleClick = (index) => {
   activeIndex.value = index;
   setTimeout(() => {
@@ -34,60 +108,68 @@ const handleClick = (index) => {
 };
 </script>
 
-<style scoped>
+<style>
+/* 设置父容器样式，使其居中对齐 */
 .linked-page {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-  flex-wrap: wrap; /* 允许换行 */
-  gap: 20px; /* 气泡之间的间距 */
+  flex-wrap: wrap;
+  justify-content: center; /* 居中对齐 */
+  align-items: center; /* 垂直居中 */
+  gap: 20px; /* 项目之间的间距 */
+  margin-top: 100px; /* 顶部边距 */
 }
 
+/* 每个气泡的样式 */
 .bubble {
+  display: grid;
+  place-items: center;
+  background: #e3edf7;
+  padding: 1.4em;
+  border-radius: 10px;
+  box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+              -6px -6px 10px -1px rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0);
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+
+/* 气泡内容的样式 */
+.bubble-content {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: moveUpDown 2s infinite ease-in-out;
-  transition: transform 0.3s, background-color 0.3s; /* 添加过渡效果 */
+  justify-content: center;
+  color: #039be5; /* 设置文字颜色为蓝色 */
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 700; /* 设置文字加粗 */
+
 }
 
-.bubble:active, .bubble.active {
-  transform: scale(2);
-  background-color: #FF5722; /* 点击时的颜色变化 */
+
+/* 图片样式 */
+.bubble img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
-/* 定义上下运动的动画 */
-@keyframes moveUpDown {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
+/* 激活状态的气泡样式 */
+.bubble.active {
+  transform: scale(1.1);
 
-/* 移动端适配样式 */
-@media (max-width: 600px) {
-  .linked-page {
-    gap: 20px; /* 减少气泡之间的间距 */
-  }
-
-  .bubble {
-    width: 80px; /* 调整气泡大小以适应小屏幕 */
-    height: 80px;
-    font-size: 14px; /* 调整字体大小 */
-  }
+  box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+	      inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+	      -0.5px -0.5px 0px rgba(255,255,255,1),
+	      0.5px 0.5px 0px rgba(0,0,0,0.15),
+	      0px 12px 10px -10px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  transform: translateY(0.5em);
 }
 </style>
+
+
+
 
 
 
