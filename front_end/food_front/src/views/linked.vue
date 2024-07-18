@@ -1,13 +1,20 @@
 <template>
-  <div class="linked-page">
-    <div class="bubble" v-for="(food, index) in foods" :key="index" :style="{ animationDelay: `${index * 0.5}s` }"
-      @click="handleClick(index)" :class="{ active: activeIndex === index }">
-      <div class="bubble-content">
-        <img :src="food.image" :alt="food.name" />
-        <p>{{ food.name }}</p>
+  <el-container>
+    <el-header>
+      <h2 class="h2head">😉 Buy these ingredients 😉</h2>
+    </el-header>
+    <el-main>
+      <div class="linked-page">
+        <div class="bubble" v-for="(food, index) in foods" :key="index" :style="{ animationDelay: `${index * 0.5}s` }"
+          @click="handleClick(index)" :class="{ active: activeIndex === index }">
+          <div class="bubble-content">
+            <img :src="food.image" :alt="food.name" />
+            <p>{{ food.name }}</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </el-main>
+  </el-container>
 </template>
 
 
@@ -20,39 +27,12 @@ const foodStore = useFoodStore();
 const { selectedFoods } = toRefs(foodStore);
 
 // 设定需要展示的关键词,在这里改数组
-const ingredients = selectedFoods.value.map(food => food.name);
+const selectedKeywords = selectedFoods.value.map(food => food.name);
 const displayKeywords = []; // 普通字符串数组
 
-// 定义 ingredients
-const ingredient1 = selectedFoods.value[0].name;
-const ingredient2 = selectedFoods.value[1].name || null;
-
-const fetchAndSetLinkedIngredients = async () => {
-  await foodStore.fetchLinkedIngredients(ingredient1, ingredient2);
-  // 使用普通数组方法更新 displayKeywords
-  displayKeywords.push(...foodStore.linkedIngredients);
-
-  // 动态生成foods数组，仅包含需要展示的关键词
-  foods.value = displayKeywords.map(keyword => ({
-    name: keyword,
-    image: null
-  }));
-
-  // 加载图片
-  Promise.all(
-    foods.value.map(food =>
-      keywordToImageMap[normalizeKeyword(food.name)]().then(module => {
-        food.image = module.default;
-      })
-    )
-  ).catch(error => {
-    console.error('Error loading images:', error);
-  });
-};
-
-onMounted(() => {
-  fetchAndSetLinkedIngredients();
-});
+// 定义 ingredients，选取selectedKeywords的前两个值，如果不足两个则设置默认值
+const ingredient1 = selectedKeywords[0] || 'crab';
+const ingredient2 = selectedKeywords[1] || 'null';
 
 // 映射对象，将标准化后的关键词和图片路径绑定
 const keywordToImageMap = {
@@ -103,6 +83,7 @@ const keywordToImageMap = {
   banana: () => import('@/assets/food_img/Banana.webp'),
   pineapple: () => import('@/assets/food_img/Pineapple.webp'),
   berries: () => import('@/assets/food_img/Blackberry.png'),
+  beans: () => import('@/assets/food_img/Green_Bean.png'),
 };
 
 // 函数将关键词标准化为小写
@@ -114,6 +95,39 @@ const foods = ref([]);
 // 初始化 foods 数组和加载图片在 fetchAndSetLinkedIngredients 中完成
 
 const activeIndex = ref(null);
+
+
+const fetchAndSetLinkedIngredients = async () => {
+  await foodStore.fetchLinkedIngredients(ingredient1, ingredient2);
+  // 使用普通数组方法更新 displayKeywords
+  displayKeywords.push(...foodStore.linkedIngredients);
+
+  // 动态生成foods数组，仅包含需要展示的关键词
+  foods.value = await Promise.all(displayKeywords.map(async keyword => {
+    const imageLoader = keywordToImageMap[normalizeKeyword(keyword)];
+    let image = null;
+    if (imageLoader) {
+      image = await imageLoader().then(module => module.default).catch(() => null);
+    }
+    return {
+      name: keyword,
+      image: image
+    };
+  }));
+};
+
+const getImageSrc = (keyword) => {
+  const imageLoader = keywordToImageMap[normalizeKeyword(keyword)];
+  if (imageLoader) {
+    return imageLoader().then(module => module.default).catch(() => null);
+  }
+  return null;
+};
+
+onMounted(() => {
+  fetchAndSetLinkedIngredients();
+});
+
 
 // 处理点击事件
 const handleClick = (index) => {
@@ -135,7 +149,7 @@ const handleClick = (index) => {
   /* 垂直居中 */
   gap: 20px;
   /* 项目之间的间距 */
-  margin-top: 100px;
+  margin-top: 80px;
   /* 顶部边距 */
 }
 
@@ -153,6 +167,10 @@ const handleClick = (index) => {
   transition: transform 0.5s;
 }
 
+.h2head {
+  text-align: center;
+  margin-top: 30px;
+}
 
 /* 气泡内容的样式 */
 .bubble-content {

@@ -61,7 +61,7 @@ export const useFoodStore = defineStore('food', {
     //关联食材
     async fetchLinkedIngredients(ingredient1: string, ingredient2: string) {
       try {
-        const response = await foodService.getLinkedIngredients({ ingredient1, ingredient2 });
+        const response = await foodService.getLinkedIngredients(ingredient1, ingredient2);
         this.linkedIngredients = response.data;
         console.log('linkedIngredients:', this.linkedIngredients);
       } catch (error) {

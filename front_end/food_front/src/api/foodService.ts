@@ -20,8 +20,10 @@ export default {
     }
   },
   // 获取关联食材
-  getLinkedIngredients(payload) {
-    return foodHttp.post('/recipes/associate', payload) // 替换为你的API端点
+  getLinkedIngredients(ingredient1:string, ingredient2:string) {
+    const requestData = { ingredient1:ingredient1, ingredient2:ingredient2 };
+    console.log('Sending JSON:', JSON.stringify(requestData)); // 打印将要发送的 JSON 格式
+    return foodHttp.post('/recipes/associate',JSON.stringify(requestData) ) // 替换为你的API端点
       .then(response => {
         console.log(response.data); // 打印获取的数据
         return response;
