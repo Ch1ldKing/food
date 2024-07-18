@@ -6,6 +6,9 @@
     <div class="dots">
       <span v-for="(route, index) in routes" :key="index" :class="{ active: currentIndex === index }"></span>
     </div>
+    <button class="home-button" @click="navigateHome">
+      <img src="@/assets/home.png" alt="Home" />
+    </button>
   </div>
 </template>
 
@@ -24,15 +27,10 @@ export default defineComponent({
     const transitionName = ref('fade'); // 动态过渡名称
 
     const routes = [
-
-      { path: '/', name: 'FootPotPage' },
-
+      { path: '/', name: 'FoodPotPage' },
       { path: '/cooking', name: 'Cooking' },
-
       { path: '/search', name: 'Search' },
-
-      { path:'/linked',name:'linked'}
-
+      { path: '/linked', name: 'Linked' }
     ];
 
     const updateCurrentIndex = function () {
@@ -63,10 +61,7 @@ export default defineComponent({
       const distance = touchEndX.value - touchStartX.value;
       const timeElapsed = Date.now() - touchStartTime.value;
 
-      // 仅在滑动距离大于50像素且持续时间小于500毫秒时触发页面切换
       if (Math.abs(distance) > 50 && timeElapsed < 500) {
-        console.log('touchStartX', touchStartX.value);
-        console.log('touchEndX', touchEndX.value);
         if (distance > 0) {
           transitionName.value = 'fade'; // 从右入镜
           prevPage();
@@ -76,7 +71,6 @@ export default defineComponent({
         }
       }
 
-      // 重置触摸参数
       touchStartX.value = 0;
       touchEndX.value = 0;
       touchStartTime.value = 0;
@@ -94,6 +88,10 @@ export default defineComponent({
       }
     };
 
+    const navigateHome = function () {
+      router.push({ name: 'FoodPotPage' });
+    };
+
     const currentRouteKey = computed(() => route.path);
 
     return {
@@ -103,23 +101,24 @@ export default defineComponent({
       transitionName,
       onTouchStart,
       onTouchMove,
-      onTouchEnd
+      onTouchEnd,
+      navigateHome
     };
   }
 });
 </script>
 
 <style scoped>
-
 .app {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  padding-top: 20px; /* 调整页面顶部填充以增加间距 */
 }
 
 .dots {
   position: absolute;
-  top: 0px;
+  top: 15px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -128,30 +127,47 @@ export default defineComponent({
 
 .dots span {
   width: 8px;
-    /* 缩小点的大小 */
-    height: 8px;
-    /* 缩小点的大小 */
-    background: rgb(88, 187, 229);
-    /* 浅绿色背景 */
-    border-radius: 50%;
+  height: 8px;
+  background: rgb(88, 187, 229);
+  border-radius: 50%;
 }
 
 .dots span.active {
   background: rgb(11, 69, 127);
 }
 
-/* 过渡效果定义 */
+.home-button {
+  position: absolute;
+  top: -15px; /* 调整按钮距离顶部的距离 */
+  right: 8px; /* 调整按钮距离右侧的距离 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-button img {
+  width: 30px; /* 调整图标宽度 */
+  height: 30px; /* 调整图标高度 */
+  transition: transform 0.3s ease;
+}
+
+.home-button:hover img {
+  transform: scale(1.1); /* 悬停时放大 */
+}
+
+.home-button:active {
+  transform: scale(0.9); /* 点击时缩小 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 点击时添加阴影 */
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
-  /* 修改此处的时间为你需要的持续时间 */
 }
 
 .fade-enter,
-.fade-leave-to
-
-/* .fade-leave-active in <2.1.8 */
-  {
+.fade-leave-to {
   opacity: 0;
 }
 </style>
