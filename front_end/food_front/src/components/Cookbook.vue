@@ -84,11 +84,11 @@ export default defineComponent({
 
 .main-content {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     text-align: center;
     left: 0px;
-
+    overflow-y: auto; /* 添加滚动 */
+    height: calc(100vh - 100px); /* 适应视口高度 */
 }
 
 .cute-button {
