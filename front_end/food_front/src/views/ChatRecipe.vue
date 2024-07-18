@@ -1,5 +1,4 @@
 <template>
-
   <el-container class="container">
     <el-header class="top-container">
       <div class="card">
@@ -10,15 +9,23 @@
     </el-header>
     <el-main class="middle-container">
       <div v-if="chatRecipe">
-        <p>{{ chatRecipe.process }}</p>
+        <div class="new-card">
+          <div class="bg"></div>
+          <div class="blob"></div>
+          <div class="card-content" >
+          <div v-html="chatRecipe.process"></div>
+          </div>
+        </div>
       </div>
       <div v-else>
         <p>No Recipe Process Available</p>
       </div>
     </el-main>
     <el-footer class="bottom-container">
-      <!--   -->
-      <button @click="fetchChatRecipe">Fetch Chat Recipe</button>
+      <button class="fetch-button" @click="fetchChatRecipe">
+        <span class="back"></span>
+        <span class="front">AI</span>
+      </button>
     </el-footer>
   </el-container>
 </template>
@@ -52,7 +59,6 @@ export default defineComponent({
     return {
       fetchChatRecipe,
       chatRecipe,
-      goBack
     };
   }
 });
@@ -62,91 +68,195 @@ export default defineComponent({
 .container {
   display: flex;
   flex-direction: column;
-  /* 元素垂直排列 */
   align-items: center;
-  /* 水平居中 */
   justify-content: space-between;
-  /* 子元素均匀分布在容器内 */
   height: 100vh;
-  /* 高度为视口高度 */
   padding: 0px;
-  /* 内边距 */
   box-sizing: border-box;
-  /* 包含内边距和边框在内的总宽度和高度计算 */
 }
 
 .card {
   width: 300px;
   padding: 10px;
-  /* 添加内边距以防止文本靠近边框 */
   border-radius: 30px;
   background: #f3f0f0;
-  box-shadow: 0px 10px 20px #bebebe, -15px -15px 30px #ffffff;
+  box-shadow: 0px 5px 10px #bebebe, -5px -5px 15px #ffffff; /* 调小阴影 */
   text-align: center;
-  /* 文本居中对齐 */
   word-wrap: break-word;
-  /* 强制长词换行 */
+}
+
+.new-card {
+  position: relative;
+  width: 100%; /* 调整新卡片的宽度 */
+  height: 66vh; /* 调整新卡片的高度 */
+  border-radius: 14px;
+  z-index: 1111;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px #bebebe, -10px -10px 30px #ffffff; /* 调小阴影 */
+}
+
+.bg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  z-index: 2;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(24px);
+  border-radius: 10px;
+  overflow: hidden;
+  outline: 2px solid white;
+}
+
+.blob {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background-color: #ff0000;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce 5s infinite ease;
+}
+
+.card-content {
+  position: relative;
+  z-index: 3;
+  padding: 20px;
+  text-align: left;
+  color: #000;
+  word-wrap: break-word;
+  overflow-y: auto; /* 添加滚动条 */
+  max-height: calc(100% - 40px); /* 适应card的高度 */
+}
+
+.card-content::-webkit-scrollbar {
+  width: 12px; /* 滚动条的宽度 */
+}
+
+
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
 }
 
 .top-container {
-  
   display: flex;
   justify-content: center;
-  /* 水平居中 */
   align-items: center;
-  /* 垂直居中 */
   flex-wrap: wrap;
-  /* 换行 */
   gap: 20px;
-  /* 间距为20px */
   margin-bottom: 20px;
-  /* 底部外边距20px */
   margin-top: 25px;
-  /* 顶部外边距20px，距离页面顶部20px */
   width: 100%;
 }
 
 .middle-container {
-    flex: 1;
-      /* 使中间部分占据剩余空间 */
-      overflow-y: auto;
-      /* 垂直滚动 */
-      padding: 20px;
-      /* 内边距 */
-      box-sizing: border-box;
-      /* 包含内边距和边框在内的总宽度和高度计算 */
-      width: 100%;
-      /* 宽度100% */
-  /* 通过平移将元素居中 */
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
 }
-
 
 .bottom-container {
   position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    /* 添加阴影效果 */
-    left: 0px;
-    /* 向左移动1px，可以根据需要调整距离 */
+  bottom: 20px; /* 添加20px的底部空间 */
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  left: 0px;
 }
 
-.back-button {
-  margin-left: 10px;
-  background: #f3f0f0;
+.fetch-button {
+  --primary: 255, 90, 120;
+  --secondary: 150, 50, 60;
+  width: 60px;
+  height: 50px;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
+  outline: none;
   cursor: pointer;
-  box-shadow: 0px 10px 20px #bebebe, -15px -15px 30px #ffffff;
+  user-select: none;
+  touch-action: manipulation;
+  outline: 10px solid rgba(var(--primary), .5);
+  border-radius: 100%;
+  position: relative;
+  transition: .3s;
 }
 
-.back-button:hover {
-  background: #e0dddd;
+.fetch-button .back {
+  background: rgb(var(--secondary));
+  border-radius: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
+.fetch-button .front {
+  background: linear-gradient(0deg, rgba(var(--primary), .6) 20%, rgba(var(--primary)) 50%);
+  box-shadow: 0 .5em 1em -0.2em rgba(var(--secondary), .5);
+  border-radius: 100%;
+  position: absolute;
+  border: 1px solid rgb(var(--secondary));
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Baloo 2', sans-serif; /* 使用圆润字体 */
+  transform: translateY(-15%);
+  transition: .15s;
+  color: rgb(var(--secondary));
+}
+
+.fetch-button:active .front {
+  transform: translateY(0%);
+  box-shadow: 0 0;
+}
+
+/* Media query for responsive design */
+@media (max-height: 700px) {
+  .new-card {
+    width: 100%;
+    height: 60vh;
+  }
+
+  .bottom-container {
+    padding: 5px 0;
+  }
+}
 
 </style>
